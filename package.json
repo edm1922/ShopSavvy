@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack -p 9002",
+    "dev": "next dev -p 9002",
+    "dev:turbo": "next dev --turbopack -p 9002",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "install:scraping": "npm install axios cheerio puppeteer @types/cheerio @types/puppeteer",
+    "install:auth": "npm install @supabase/supabase-js @supabase/auth-helpers-nextjs",
+    "test:lazada": "next dev -p 9002 & sleep 5 && curl http://localhost:9002/api/test/lazada"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.6.2",
@@ -35,8 +39,13 @@
     "@radix-ui/react-tabs": "^1.1.3",
     "@radix-ui/react-toast": "^1.2.6",
     "@radix-ui/react-tooltip": "^1.1.8",
+    "@supabase/auth-helpers-nextjs": "^0.9.0",
+    "@supabase/supabase-js": "^2.39.7",
     "@tanstack-query-firebase/react": "^1.0.5",
     "@tanstack/react-query": "^5.66.0",
+    "axios": "^1.9.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cheerio-httpcli": "^0.8.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -46,6 +55,8 @@
     "lucide-react": "^0.475.0",
     "next": "15.2.3",
     "patch-package": "^8.0.0",
+    "playwright": "^1.52.0",
+    "puppeteer": "^22.5.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -53,15 +64,27 @@
     "recharts": "^2.15.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
+    "user-agents": "^1.1.533",
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.35",
     "@types/node": "^20",
+    "@types/puppeteer": "^7.0.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "buffer": "^6.0.3",
+    "events": "^3.3.0",
+    "file-loader": "^6.2.0",
     "genkit-cli": "^1.6.1",
+    "null-loader": "^4.0.1",
     "postcss": "^8",
+    "punycode": "^2.3.1",
+    "querystring-es3": "^0.2.1",
+    "string_decoder": "^1.3.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "url": "^0.11.4",
+    "util": "^0.12.5"
   }
 }

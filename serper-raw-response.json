@@ -1,0 +1,230 @@
+{
+  "searchParameters": {
+    "q": "Arduino",
+    "gl": "ph",
+    "hl": "en",
+    "type": "shopping",
+    "engine": "google"
+  },
+  "shopping": [
+    {
+      "title": "Arduino Uno R3 With Cable SMD CH340 Chipset",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/98591228/9253705058?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkZU5pNDB1MkVhMjJEUHRUU2dmU0MvNEhoKzhOTm9NeGI4enRueExGd3lOS0NSOTlzZmRMWDR5S2YxTkNXWk9vdVdYMDhieG1iL2FvZksxSTJqcnlKdHRET01zWC91QllaMmxFbmRtZGlKMG4",
+      "price": "₱375.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRq6hB288Rv3Ik39RgaB5Me7rTwVjJAd1DA1nlSS9EqXI0DT1O3WSZAq1U7Zu17H85KXUUH&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 591,
+      "offers": "4",
+      "productId": "6056212255884975395",
+      "position": 1
+    },
+    {
+      "title": "Uno R3 Starter Kit Basic Starter Kit Breadboard Jumper Wires Resistors Buzzer For Arduino UNO R3",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/432254726/15516543618?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkVlBXTnFLbGtLY21IOVhMT0xMVGhrc2VUK3RBYnJKUWlJZldjd3lxN3RGUHFIM3J6MSttaEcxLzJXbzJEekNtYWl6bUhvN1VnQzljWnlrYVRKNDk0ZjVTN3BydlFsTEVvNTdSU0dXUDRCekE",
+      "price": "₱131.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRN1Lesp7qlvkTb09oV_cnWWCcDbehHU0ViFv5jsLVeP5bM1V9e3yxlxrNQi7j7zggYP4EwEg&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 46,
+      "position": 2
+    },
+    {
+      "title": "Arduino UNO R4 WiFi",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/1212628285/22664220141?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkZG1WNlRuYnZwaTZXVmptQkFDY0kyVEdKdjZRR0Z5Vk5lMGZZZUtmbVBxRmtUTGU0VmxqUXNrZ2RFWThncUlXa2tGckNDOUFlYThJNlordHNlcjlvOERrWXE3RFp3Zkx3ZURnbEcyTUMwNUg",
+      "price": "₱500.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTwDZH4W1o2d_9Nu7da0YvB-xCZ5uQe1mgMSFL0LjvW4HftypU-36hfb9q7uqgTvHm3rdnKEw&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 2,
+      "offers": "2",
+      "productId": "7719753630259463051",
+      "position": 3
+    },
+    {
+      "title": "LAFVIN Basic Starter Kit For Arduino Uno Set R3 DIY Kit - R3 Board / Breadboard + Retail Box",
+      "source": "Lazada Philippines",
+      "link": "https://www.lazada.com.ph/products/lafvin-basic-starter-kit-for-arduino-uno-set-r3-diy-kit-r3-board-breadboard-retail-box-i3730325308-s19668054947.html?from_gmc=1&fl_tag=1",
+      "price": "₱418.89",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSeEagm-zfehezwGRL4Je7znBzd695ySJCOdxSmHWBdqoDaPjogWiMdxDYwEF5aRuNEpyqD1Q&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 29,
+      "position": 4
+    },
+    {
+      "title": "UNO R3 Arduino Compatible Development Board, ATmega328p, CH340G, with pin header",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/331412195/23626926744?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkVlBXTnFLbGtLY21IOVhMT0xMVGhrdC9GM0poc0dGNjl3ajFVSkZnNm1kWkhTZUxhMUR6eUN3UDBRYWlRd0svbkl1OWhOYVZxTXBtTFVOOTNkWXB6ZkhFVUhIeU00WnJLbjIvK2NBN0plb04",
+      "price": "₱140.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTLZF4qRY0tNeeidj153XreLaetzijcrX_DIe7PZePuSDU8QSyIrmPs7-wo-mJek0iuOlDfzg&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 27,
+      "position": 5
+    },
+    {
+      "title": "Multifunctional Nano UNO Expansion Board for Arduino",
+      "source": "Lazada Philippines",
+      "link": "https://www.lazada.com.ph/products/compatible-with-uno-nano-multi-purpose-expansion-board-multi-purpose-expansion-module-suitable-for-arduino-expansion-i3723818110-s19625410122.html?from_gmc=1&fl_tag=1",
+      "price": "₱60.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRmNpCzen7X5rkUAj06xzLx7gt43od26_9fdAKsdVGijQAO8tDPVcwSjYFVI65ajro5vApIPQ&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 2,
+      "offers": "2",
+      "productId": "10283257706947085097",
+      "position": 6
+    },
+    {
+      "title": "DFRduino UNO R3 - Arduino Compatible",
+      "source": "DigiKey Philippines",
+      "link": "https://www.digikey.ph/en/products/detail/dfrobot/DFR0216/6579366?srsltid=AfmBOorP2MyEOE5rH44mfL9_cIkNOMDHpGUgTETH203dwX9P6o8T4VM2464",
+      "price": "₱729.11",
+      "delivery": "₱800.00 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTpnjwIMBg_CYy0z-LDFinqmWYXP8rtPb3Jy1l2pkENM_4LM7ik328qfCYTu4bdN3I6op9iuA&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 6,
+      "offers": "2",
+      "productId": "6653075468450919537",
+      "position": 7
+    },
+    {
+      "title": "LAFVIN Arduino Smart Robot Car Kit For Uno R3 With Tutorial, Support Cod",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/365944604/11738556725?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkVlBXTnFLbGtLY21IOVhMT0xMVGhrdk9xdCtoTmdqMkQ3UTh3Qit4Rk1DK0VaYjlXdW0ydFd5WmExM2JtRUJhdndybld5eDgvb1RjVUlvcDduMDVQcjhjK0V1MU1Cc0k0RXN6cGprUTlJRUs",
+      "price": "₱2,006.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRfI_rMxT2bf-LVIiJ1feXr2pmZkajuo0co8pm1ar6eAdkBNzU-Ei0choM7igwvF08Yo797&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 90,
+      "position": 8
+    },
+    {
+      "title": "Arduino Nano Esp32 With Headers",
+      "source": "Ubuy",
+      "link": "https://www.ubuy.com.ph/product/F8UD9KV1S-arduino-nano-esp32-with-headers-abx00083-esp32-s3-usb-c-wi-fi-bluetooth-hid-support-micropython-compatible?srsltid=AfmBOopwj_53a9OG8vWM1_Z9ss-gIdzSFESc9M7xOSt4AtCUOdA5W6m3Pqw",
+      "price": "₱2,083.00",
+      "delivery": "₱572.00 shipping",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQmogGvvH3dDWqzE5oZBgmY8zj6AxkeZNXKTmB_jshxvqknxYX-GmKKQrRbIf6XTwFiQy5enw&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 158,
+      "offers": "5+",
+      "productId": "3234339187301754958",
+      "position": 9
+    },
+    {
+      "title": "Arduino UNO R3 Development Board",
+      "source": "Makerlab Electronics",
+      "link": "https://www.makerlab-electronics.com/products/arduino-uno-r3-italy?variant=42292818247871&country=PH&currency=PHP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&srsltid=AfmBOoqeyaxv-DPi79flgRW9Ve2kYJOPu43KotevdytIh5kW2-adXXn0fg4",
+      "price": "₱1,890.00",
+      "delivery": "₱180.00 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS1NXX5NXXBd559i9QFWMvf8DGd2hYhJ8_51jh_aHh12Kzs2wf4wQGvsigEMP-0rO9QYdne8A&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 3,
+      "position": 10
+    },
+    {
+      "title": "Arduino Uno R3 Original",
+      "source": "Lazada Philippines",
+      "link": "https://www.lazada.com.ph/products/arduino-uno-r3-original-i3431967707-s17594002599.html?from_gmc=1&fl_tag=1",
+      "price": "₱1,799.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRtYtJhtWvusmglHFkP04ZRHosmVnqipp9RzGGlrz8tIzucFM49Ps0J-J7K9q4mcZub3NI9&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 9,
+      "position": 11
+    },
+    {
+      "title": "ELEGOO Uno Project Super Starter Kit with Tutorial and Uno R3 Compatible with Arduino IDE",
+      "source": "Pet Video Verify Supplies",
+      "link": "https://petvideoverifysupplies.com/elegoo-uno-project-super-starter-kit-with-tutorial-and-uno-r3-compatible-with-arduino-ide-diy-electronic-kit/?sku=64dfb47c766efa119e78bf42&srsltid=AfmBOoo_LUegrkk7q1B4eFZ4dXGZF2cdvyTT8wjSagQAncinnZmi19lEygA#2132270",
+      "price": "₱3,877.90 + tax",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTa9y2LQ29oZLNmHJ8QufqbOA2oOjIVeXljBXnf1qbe834LlTLh-gWEAZk&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 31,
+      "position": 12
+    },
+    {
+      "title": "Arduino Uno Rev3",
+      "source": "elektor.com",
+      "link": "https://www.elektor.com/products/arduino-uno-rev3?utm_source=google&utm_medium=cpc&utm_campaign=en-google-ads&utm_content=Arduino%20Uno%20Rev3&srsltid=AfmBOoq37Big21aKN_ChHoqjp0V3LsJu4sykI_O1X3K5rPI-c6dnuF3z3eY",
+      "price": "₱1,571.58",
+      "delivery": "₱626.74 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQqYlBVwH9W86rfB6z35-R8KBG2MGvuBr1tZktgItZ3BLVr_uM1sGI2NT5y&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 842,
+      "position": 13
+    },
+    {
+      "title": "Uno R3 CH340 Arduino Compatible Philippines | Circuitrocks",
+      "source": "circuitrocks",
+      "link": "https://circuit.rocks/products/arduino-uno-r3-ch340?variant=45761381040417&country=PH&currency=PHP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&srsltid=AfmBOoqQRCq5roegXAxXznh9V1LlcXItOcKOXqBp2PC2Z6eTyhgjkoHwLp0",
+      "price": "₱155.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSzOHAczlFJ1vvbL3c-SmljYVo_6rF2kAItuldWg2ml06CDJdq6CUT4DSzfgonxML0E104-&usqp=CAE",
+      "position": 14
+    },
+    {
+      "title": "Arduino Uno R3 Dip Type ATMEGA16U2 MEGA328P Chip Development board with USB CABLE for bypass IOS usb",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/700498404/24356039213?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkVlBXTnFLbGtLY21IOVhMT0xMVGhrdUt3M3NKZ1d6QnVObVdydUk0OHMybFVBRjB2STJOYW5aaXpDSVVWYWtnUUU2cU9Lc0FwUThob2VLczQ5RzJ1M0wrVjJEdCtZUFAvR0pITmNwWHBURlM",
+      "price": "₱536.00",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR9BVQGHMZC8i1MwUDN3z18xrz1Se_qG9FxHAbHkb07PmTctbzHnkAtE_VOSO2YRrJU7Diu4Q&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 481,
+      "position": 15
+    },
+    {
+      "title": "Arduino Uno R4 Wifi",
+      "source": "Amazon.com - Seller",
+      "link": "https://www.amazon.com/Arduino-UNO-WiFi-ABX00087-Bluetooth/dp/B0C8V88Z9D?shipTo=PH&source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=AA57DDZKZUZDL&language=en_US",
+      "price": "₱1,523.90 + tax",
+      "delivery": "₱527.55 shipping",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQbFI3brMNqP6PSH_L44EehsjlZpzASMhnWU0B5wC63kObMpNuyqMl1e7vp&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 597,
+      "offers": "2",
+      "productId": "16332021111646766333",
+      "position": 16
+    },
+    {
+      "title": "Osepp Arduino Uno - R3",
+      "source": "Lazada Philippines",
+      "link": "https://www.lazada.com.ph/products/diymore-arduino-uno-r3-r3-atmega328p-development-board-atmega16u2-board-io-isp-33v-5v-atmega16u2-buzzer-microcontroller-with-usb-cable-for-arduino-expansion-module-i1498528767-s6213192474.html?from_gmc=1&fl_tag=1",
+      "price": "₱379.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSbEHKsEfwKLkILmfwsz2SVA0ww0OKsHXwSSy291_skRuU9dSdolE7UorASvfQcsg69ebV8hQ&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 29,
+      "position": 17
+    },
+    {
+      "title": "UNO R3 ATmega328P Development Board Atmega16U2 Board For Arduino Module",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/240783675/21687896092?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkVlBXTnFLbGtLY21IOVhMT0xMVGhrc3Jkci9qb2t2anZjWWROR3dCRW04R25ueHR3N0pjaVFybVZLZzc0Y21GTmkwc2pYc2wrRmFhV3I2T29QRnlTdnFIM0l2b0FxWXFVTWdxUnpLSnFjUDU",
+      "price": "₱226.00",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRCC5F9cO0848Kfxb6vGrItps0QSVae-hApKVGC_j6DFOvkVg1xDEp6-aYvz-NrEhi5h1vJQw&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 6,
+      "position": 18
+    },
+    {
+      "title": "UNO R3 board compatible with Arduino Development ATmega328P DIP",
+      "source": "Makerlab Electronics",
+      "link": "https://www.makerlab-electronics.com/products/uno-r3-board-compatible-with-arduino-development-atmega328p-dip?srsltid=AfmBOooveXL2fHgU3vHYUESFnfU7jppLPrwN-UkZT0vfQaCWwKBfPnv4W8s",
+      "price": "₱549.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSRpZrBu9NldHURfDN0pg0bJ5BivK-ccfOWDNX6j1szAaYezmjSVUbLnFcnauZXWhJxbbUqbhOH&usqp=CAE",
+      "position": 19
+    },
+    {
+      "title": "Arduino Uno Basic Starter Kit R3 Board + Breadboard Retail Box - DIY Kit With R3 Board And Breadboard",
+      "source": "Lazada Philippines",
+      "link": "https://www.lazada.com.ph/products/basic-starter-kit-for-arduino-uno-set-r3-diy-kit-r3-board-breadboard-retail-box-i3865629270-s20665134186.html?from_gmc=1&fl_tag=1",
+      "price": "₱552.95",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSsEz3Af-0lD_2aRcrbvvTvwdfo5EduzJSlTZeZQ9reSa8kcwpbF0L4twyDyCQoCYHZgmq0BQ&usqp=CAE",
+      "position": 20
+    }
+  ],
+  "credits": 2
+}

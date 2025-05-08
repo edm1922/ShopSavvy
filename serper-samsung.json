@@ -1,0 +1,240 @@
+{
+  "searchParameters": {
+    "q": "Samsung",
+    "gl": "ph",
+    "hl": "en",
+    "type": "shopping",
+    "engine": "google"
+  },
+  "shopping": [
+    {
+      "title": "Galaxy A06",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a06-light-blue-64gb-sm-a065flbdphl/",
+      "price": "₱5,290.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTB5asRMgteZ051wHEzacluVhmrrG2acp7Z9_MerKegu_Jzjm2p4WZpNWSoxHbj9YYcBLMbqg&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 24,
+      "position": 1
+    },
+    {
+      "title": "Galaxy A54 (100% Tested) - Up to 2 Years Warranty",
+      "source": "CompAsia Philippines",
+      "link": "https://compasia.com.ph/products/galaxy-a54-5g?variant=43960110874873&srsltid=AfmBOoojY1P8DcYguKVEr8kTQdWBoGNZ5_pD33DZaT283mH4SKMGGO0sXZs",
+      "price": "₱8,950.00 used",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ9uWKVPG6RukxZdtqbcCRO-6B19VrYfxvXuAGDHIXDtqeM-XFcUwCdi9_3731KubN0FfY3&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 11,
+      "position": 2
+    },
+    {
+      "title": "Galaxy A06 5G",
+      "source": "Shopee",
+      "link": "https://shopee.ph/product/57465664/25092847580?gads_t_sig=VTJGc2RHVmtYMTlxTFVSVVRrdENkU1psNndicnpENjFrR2ZiZlcxU0ZESWZUWmpHTW5WOFhSTEo0YjBvSDVjY2l5LzlyZGVEWlU4Q3poQVBnVkJmZHVQOTlkUkRCTnk3ekFVYjFzS0RtZlpKMzE5eG1aMnFRdTdBNURQMFNWWng",
+      "price": "₱8,490.00",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTikZ3V7qlL4EcrSvwC6klrIG_jRy8gT1qHboxwPIezAH5HOSm6EPvD0P4BUlNw1xWCToT_9A&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 901,
+      "offers": "3",
+      "productId": "10860317613581999193",
+      "position": 3
+    },
+    {
+      "title": "Galaxy A16 LTE",
+      "source": "Ansons.ph",
+      "link": "https://ansons.ph/product/samsung-galaxy-a16-lte-black-4gb128gb-sm-a165fzkdphl/",
+      "price": "₱8,990.00",
+      "delivery": "₱400.00 shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTsoeFflDj9OHPDYCbF3nnL_pI6LAell_RtZePSzdQ6O-GU3OGoB53zWRZksC1gkk8zuBOy&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 15,
+      "offers": "2",
+      "productId": "7238070867028755767",
+      "position": 4
+    },
+    {
+      "title": "Galaxy S24 FE",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-s24-fe/buy/?modelCode=SM-S721BZKCPHL",
+      "price": "₱36,990.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSth6JNOdLjm4tbHBe24mpAlgPX6bC63kB_1FLKcD-frMBbICvB1NYyUh7eJKKQUwi_pgX1&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 102,
+      "position": 5
+    },
+    {
+      "title": "Samsung Galaxy A16 5G (8GB + 256GB) Black Blue",
+      "source": "abenson.com",
+      "link": "https://www.abenson.com/samsung-galaxy-a16-5g-8gb-256gb-black-blue.html",
+      "price": "₱13,990.00",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSyAXt83_jKDHeqczuQmWAHLjHG01TnK6zUKOEKwaMqHI7nHRTuf2Zw5347kXIw2JxdtsxU&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 11,
+      "position": 6
+    },
+    {
+      "title": "Samsung Galaxy S25 Ultra 1TB Titanium Gray",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-s25-ultra/buy/?modelCode=SM-S938BZTQPHL",
+      "price": "₱110,990.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRK5rmTSsfrcibf_SwQi1Gl55dIbhBd2eSUPBsqNN2ualBlRpsogJkO2wJ2u-C7V2DDzQt4&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 47,
+      "position": 7
+    },
+    {
+      "title": "Galaxy A26 5G",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a26-5g-mint-256gb-sm-a266blghphl/",
+      "price": "₱17,990.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSYyrF6Q-3cXa0uFSBPD3nAkmudw2wUGJa8l2h6QOEByWgxfFg3LC-Je4vwGqiShDHCEYG2&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 3,
+      "position": 8
+    },
+    {
+      "title": "Galaxy A16 5G",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a16-5g-gold-256gb-sm-a166pzdiphl/",
+      "price": "₱13,990.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRt8Of2bE-olK8H2V76t8cTnvrkeDEpyeKY80lAcmtjrEcJ57ncwPiWj7w7Wh9l9edk1lNc&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 11,
+      "position": 9
+    },
+    {
+      "title": "Samsung Galaxy S24 Ultra - 256 GB - Titanium Black",
+      "source": "Design Info",
+      "link": "https://www.designinfo.in/p/samsung-galaxy-s24-ultra-256gb-titanium-black-gst-billing/",
+      "price": "₱51,274.27",
+      "delivery": "₱1,314.74 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR8h2OjhpfmPZu0IgLkw4_YI6HyZOprAQLvwTUPyFMvmSFrenq-wUrU2a9Y2147LljZ9Dso&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 85,
+      "position": 10
+    },
+    {
+      "title": "Galaxy A55 5G",
+      "source": "Ubuy",
+      "link": "https://www.ubuy.com.ph/product/J3C7177DI-samsung-galaxy-a55-5g-4g-lte-256gb-8gb-tmobile-mint-tello-global-unlocked-latin-america-warranty-sm-a556e-ds-6-6-120hz-50mp-triple?srsltid=AfmBOopRHmJnFfYlyZZ2WonVD6UkwizMKuwOSjYPCsJ3m2y-CXw41rJGe68",
+      "price": "₱29,522.00",
+      "delivery": "₱572.00 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSABTJndbj5y40gZvSLUkOzge0anRuKVbnBsJ1N7dvJb6q8pPlwoJRRHT4T&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 41,
+      "offers": "2",
+      "productId": "11363849719031728277",
+      "position": 11
+    },
+    {
+      "title": "Galaxy A56 5G",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a56-5g-awesome-lightgray-128gb-sm-a566bzasphl/",
+      "price": "₱23,990.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSN5v7GsoWju7Is8aePsMJvDR-quS5UHgy2MwKHJLlMcnnZ1enNg-7At8bpazgBnt5MY5J4&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 10,
+      "position": 12
+    },
+    {
+      "title": "New Galaxy Z Fold6 256GB Navy (2024)",
+      "source": "Ansons.ph",
+      "link": "https://ansons.ph/product/samsung-galaxy-z-fold6-navy-12256gb-sm-f956bdbdphl/",
+      "price": "₱90,990.00",
+      "delivery": "₱400.00 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTC8tznenTK6Ut6DtGY0nu69zJFKOfC66lzCHdeN6ME70rTKoM5ZHAGskuNDFR_IOvVkGd3OA&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 12,
+      "offers": "2",
+      "productId": "3628823139531604504",
+      "position": 13
+    },
+    {
+      "title": "Samsung Galaxy A55 5G - Awesome Navy - 256 GB 8GB",
+      "source": "abenson.com",
+      "link": "https://www.abenson.com/samsung-galaxy-a55-5g-8gb-256gb-navy.html",
+      "price": "₱24,990.00",
+      "imageUrl": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTWpN5Vz9t5N5GwwlhNBYBsEsjaOjG3aKHYxsbd7zj0xn1UpBeuF77vq3uToiPh0cJlSjgDnw&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 1,
+      "position": 14
+    },
+    {
+      "title": "Samsung GALAXY S21 ULTRA 5G Phantom Black 256GB SM-G998BZKGPHL",
+      "source": "Ansons.ph",
+      "link": "https://ansons.ph/product/samsung-galaxy-s21-ultra-5g-256gb-phanton-black-smartphone-sm-g998bzkgphl/",
+      "price": "₱46,459.00",
+      "delivery": "₱400.00 shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQhPdFFmWEnBWmeb9Zm5LH5LgaWAcMQR5om-UmK4aGlt44GbMTHH6PPJQRWT4RXrT3IX9a4&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 6,
+      "position": 15
+    },
+    {
+      "title": "Galaxy A16 5G (8GB|256GB, Gold)|Samsung A Series Smartphone|Dual SIM mobile|50 MP Triple Camera with 13 MP Front Camera, Super AMOLED, IP54, 6X OS",
+      "source": "SM Appliance",
+      "link": "https://www.smappliance.com/products/a16-5g-8-256gb-blu-blk-samsung?variant=44137683288271&country=PH&currency=PHP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&srsltid=AfmBOoqqnUQHThZC_vaO8Yoj01EXBrlYoLMJzfdQDeyGTfi9E54P2amKfMQ",
+      "price": "₱13,990.00",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT4kWXh3VNoKfkkwcuED_7zP6jwH2S0qTxIXQWRx8g-zMLyPflHUo53uLfvliWUy5x6nfK0iA&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 11,
+      "offers": "5+",
+      "productId": "12768252084624709825",
+      "position": 16
+    },
+    {
+      "title": "Galaxy S24 Fe 128G Blue",
+      "source": "ELN Online Store",
+      "link": "https://elnstore.com/products/samsung-galaxy-s24-fe-5g-sm-s721-8gb-ram-128gb-storage?variant=44157004284083&country=PH&currency=PHP&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&srsltid=AfmBOopvuNsX4lhuBgOGSp2hd1nvWLEGScAUEodN_Yl9Qg4n4DeTHlvf3NY",
+      "price": "₱39,999.00",
+      "delivery": "₱365.00 shipping",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSvNQaXQek8L9G1FHOJAs-B_CoJBb4K87lrYsxE8VQRh3e5MOlnod3MNc1onrb04-PzpeedFg&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 102,
+      "offers": "2",
+      "productId": "9725988073879767201",
+      "position": 17
+    },
+    {
+      "title": "SAMSUNG Galaxy A16 5G Mobile Phone, 6.7\" AMOLED FHD+ Display, 90Hz Refresh Rate, Dual SIM, 5000 mAh Battery, 4GB RAM, 128GB Storage, UAE Version, Ligh",
+      "source": "Microless.com",
+      "link": "https://global.microless.com/product/samsung-galaxy-a16-5g-mobile-phone-6-7-amoled-fhd-display-90hz-refresh-rate-dual-sim-5000-mah-battery-4gb-ram-128gb-storage-uae-version-light-gray-galaxy-a16-lg/?currency=usd&srsltid=AfmBOor4GGzBVU1EOY8VJtCs5vljE_RbNfHfbIE6twAGpOcjHXSwyUeZR7U",
+      "price": "₱8,638.56 + tax",
+      "imageUrl": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRHnzULhZY739tcq0PIyIT7nTxQtU0UqtqGk2jTB3--IBqdtLyyYqceCmc&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 11,
+      "position": 18
+    },
+    {
+      "title": "Galaxy A36 5G",
+      "source": "Samsung Philippines Online Store",
+      "link": "https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a36-5g-awesome-lavender-256gb-sm-a366blvtphl/",
+      "price": "₱19,990.00",
+      "delivery": "Free shipping",
+      "imageUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcS4mnrJUk-X6U0CYTNK4fLQcilhTmqhDlW7LXobWcZGdY3OqdA7u0RrwxaKFzqB86rOV9d3&usqp=CAE",
+      "rating": 5,
+      "ratingCount": 4,
+      "position": 19
+    },
+    {
+      "title": "Galaxy A35 5G",
+      "source": "Amazon.com - Seller",
+      "link": "https://www.amazon.com/SAMSUNG-256GBGB-International-Unlocked-T-Mobile/dp/B0D1D3CVPB?shipTo=PH&source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A3QZ4GOG6ETYGB&language=en_US",
+      "price": "₱18,840.35 + tax",
+      "delivery": "₱5,114.75 shipping",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRyDNbhkF5uv0GrSzZRiGxDoM6OATtperlvs8kVY06IC_m_HTbVkzSULSM&usqp=CAE",
+      "rating": 4.5,
+      "ratingCount": 16,
+      "offers": "4",
+      "productId": "11270777697777763018",
+      "position": 20
+    }
+  ],
+  "credits": 2
+}

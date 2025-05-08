@@ -1,32 +1,7 @@
 /**
- * Represents a product with its key attributes.
+ * Re-export the Product interface from the scrapers module.
  */
-export interface Product {
-  /**
-   * The unique identifier for the product.
-   */
-  id: string;
-  /**
-   * The title or name of the product.
-   */
-  title: string;
-  /**
-   * The price of the product.
-   */
-  price: number;
-  /**
-   * The URL of the product on the e-commerce platform.
-   */
-  productUrl: string;
-  /**
-   * The name of the platform where the product is sold (e.g., Amazon, Shopee).
-   */
-  platform: string;
-  /**
-   * The URL of the product image.
-   */
-  imageUrl: string;
-}
+export { Product, ProductDetails, ProductReview } from './scrapers/types';
 
 /**
  * Represents search filters that can be applied to product searches.
@@ -48,6 +23,10 @@ export interface SearchFilters {
    * The brand of the product.
    */
   brand?: string;
+  /**
+   * The minimum rating of the product (1-5).
+   */
+  minRating?: number;
 }
 
 const mockProducts: Product[] = [
@@ -69,25 +48,70 @@ const mockProducts: Product[] = [
  * @returns A promise that resolves to an array of Product objects matching the search criteria.
  */
 export async function searchProducts(query: string, filters?: SearchFilters): Promise<Product[]> {
-  console.log(`Searching for: ${query}`, filters);
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
+  console.log(`[shopping-apis] Searching for: ${query}`, filters);
 
   if (!query.trim()) {
+    console.log('[shopping-apis] Empty query, returning empty results');
     return [];
   }
 
+  try {
+    // Import the universal search service
+    console.log('[shopping-apis] Importing universal search service');
+    const UniversalSearch = await import('./search/universal-search');
+
+    // Get default platforms
+    const defaultPlatforms = ['Shopee', 'Lazada'];
+
+    // Get enabled platforms from environment or use defaults
+    const platforms = process.env.NEXT_PUBLIC_ENABLED_PLATFORMS
+      ? process.env.NEXT_PUBLIC_ENABLED_PLATFORMS.split(',')
+      : defaultPlatforms;
+
+    console.log(`[shopping-apis] Using platforms: ${platforms.join(', ')}`);
+
+    // Use the universal search service with Serper.dev API
+    console.log('[shopping-apis] Calling universal search service');
+    const results = await UniversalSearch.searchProducts(query, filters, {
+      platformFilter: platforms,
+    });
+
+    console.log(`[shopping-apis] Got ${results.length} results from universal search`);
+
+    // If no results, try with mock data
+    if (results.length === 0) {
+      console.log('[shopping-apis] No results from universal search, falling back to mock data');
+      return getMockProducts(query, filters);
+    }
+
+    return results;
+  } catch (error) {
+    console.error('[shopping-apis] Error searching products:', error);
+    // Fall back to mock data in case of error
+    console.log('[shopping-apis] Falling back to mock data due to error');
+    return getMockProducts(query, filters);
+  }
+}
+
+/**
+ * Gets mock products based on a query and optional filters.
+ * This is used as a fallback when real scraping is disabled or fails.
+ *
+ * @param query The search query.
+ * @param filters Optional filters to apply to the search.
+ * @returns An array of Product objects matching the search criteria.
+ */
+function getMockProducts(query: string, filters?: SearchFilters): Product[] {
   const lowerQuery = query.toLowerCase();
-  const results = mockProducts.filter(product => 
+  const results = mockProducts.filter(product =>
     product.title.toLowerCase().includes(lowerQuery) ||
     product.platform.toLowerCase().includes(lowerQuery)
   );
 
-  // If specific filters are provided, apply them (basic example)
+  // If specific filters are provided, apply them
   let filteredResults = results;
   if (filters) {
     if (filters.category) {
-      // Mock: assuming category might be in title
       filteredResults = filteredResults.filter(p => p.title.toLowerCase().includes(filters.category!.toLowerCase()));
     }
     if (filters.minPrice) {
@@ -97,11 +121,13 @@ export async function searchProducts(query: string, filters?: SearchFilters): Pr
       filteredResults = filteredResults.filter(p => p.price <= filters.maxPrice!);
     }
     if (filters.brand) {
-      // Mock: assuming brand might be in title or platform
       filteredResults = filteredResults.filter(p => p.title.toLowerCase().includes(filters.brand!.toLowerCase()) || p.platform.toLowerCase().includes(filters.brand!.toLowerCase()));
     }
+    if (filters.minRating) {
+      filteredResults = filteredResults.filter(p => (p.rating || 0) >= filters.minRating!);
+    }
   }
-  
+
   return filteredResults.length > 0 ? filteredResults : mockProducts.slice(0, Math.floor(mockProducts.length / 2));
 }
 
