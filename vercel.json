@@ -7,7 +7,6 @@
   "github": {
     "silent": true
   },
-  "ignoreCommand": "echo 'Ignoring scripts directory'",
   "headers": [
     {
       "source": "/(.*)",
