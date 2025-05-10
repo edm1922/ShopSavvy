@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ProductGrid } from '@/components/app/ProductGrid';
 import { VirtualizedProductGrid } from '@/components/app/VirtualizedProductGrid';
-import { ProductRecommendations } from '@/components/app/ProductRecommendations';
+
 // Now using the fixed shopping-apis that handles browser environment properly
 import { searchProducts } from '@/services/shopping-apis';
 import { Product } from '@/services/types';
@@ -765,15 +765,7 @@ export default function AppPage() {
             />
           </ErrorBoundary>
 
-          {/* Product recommendations moved below AI Assistant */}
-          {filteredProducts.length > 0 && !isSearching && (
-            <div className="mt-6">
-              <ProductRecommendations
-                currentProducts={filteredProducts}
-                searchQuery={searchQuery}
-              />
-            </div>
-          )}
+
         </div>
       </div>
     </div>
