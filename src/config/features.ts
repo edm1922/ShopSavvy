@@ -2,15 +2,14 @@
  * Feature flags for the application.
  */
 
-// Debug log to see the value of the environment variable
-console.log('NEXT_PUBLIC_USE_CUSTOM_SCRAPERS:', process.env.NEXT_PUBLIC_USE_CUSTOM_SCRAPERS);
-
 export const FEATURES = {
   /**
-   * Whether to use custom scrapers instead of Serper.dev API.
+   * Whether to enable debug mode for scrapers.
    */
-  USE_CUSTOM_SCRAPERS: process.env.NEXT_PUBLIC_USE_CUSTOM_SCRAPERS === 'true'
-};
+  DEBUG_SCRAPERS: process.env.NEXT_PUBLIC_DEBUG_SCRAPERS === 'true',
 
-// Debug log to see the value of the feature flag
-console.log('FEATURES.USE_CUSTOM_SCRAPERS:', FEATURES.USE_CUSTOM_SCRAPERS);
+  /**
+   * Whether to enable caching for search results.
+   */
+  ENABLE_SEARCH_CACHE: process.env.NEXT_PUBLIC_ENABLE_SEARCH_CACHE !== 'false'
+};

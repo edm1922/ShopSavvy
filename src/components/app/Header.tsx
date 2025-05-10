@@ -2,7 +2,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, Search, Heart, Bell, User, LogOut } from 'lucide-react';
+import {
+  ShoppingBag,
+  Search,
+  Heart,
+  Bell,
+  User,
+  LogOut,
+  Settings,
+  BookmarkIcon,
+  Image as ImageIcon
+} from 'lucide-react';
 import { useAuth } from '@/contexts/auth-context';
 
 import { Button } from '@/components/ui/button';
@@ -15,6 +25,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { ThemeToggle } from '@/components/theme/theme-toggle';
+import { AccessibilitySettings } from '@/components/accessibility/accessibility-settings';
+import { AnalyticsDashboard } from '@/components/analytics/analytics-dashboard';
+import { KeyboardShortcuts } from '@/components/keyboard/keyboard-shortcuts';
+import { SkipLink } from '@/components/accessibility/skip-link';
+import { CurrencySelector } from '@/components/app/CurrencySelector';
 
 export function Header() {
   const { user, signOut } = useAuth();
@@ -34,35 +50,71 @@ export function Header() {
   const isDevelopment = process.env.NODE_ENV === 'development';
 
   return (
-    <header className="border-b bg-card">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2 text-xl font-semibold">
-            <ShoppingBag className="h-7 w-7 text-primary" />
-            <span>ShopSavvy</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-6">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`flex items-center gap-2 text-sm font-medium ${
-                    isActive
-                      ? 'text-primary'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  {item.name}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-        <div className="flex items-center gap-4">
+    <div>
+      {/* Skip Links for keyboard accessibility */}
+      <SkipLink
+        links={[
+          { id: 'main-content', label: 'Skip to main content' },
+          { id: 'main-navigation', label: 'Skip to navigation' },
+          { id: 'search-input', label: 'Skip to search' },
+        ]}
+      />
+
+      <header className="border-b bg-card">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          <div className="flex items-center gap-8">
+            <a href="/app" className="flex items-center gap-2 text-xl font-semibold">
+              <ShoppingBag className="h-7 w-7 text-primary" />
+              <span>ShopSavvy</span>
+            </a>
+            <nav id="main-navigation" className="hidden md:flex items-center gap-6">
+              {navigation.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`flex items-center gap-2 text-sm font-medium ${
+                      isActive
+                        ? 'text-primary'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {item.name}
+                  </Link>
+                );
+              })}
+              <Link
+                href="/app/saved-filters"
+                className={`flex items-center gap-2 text-sm font-medium ${
+                  pathname === "/app/saved-filters"
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <BookmarkIcon className="h-4 w-4" />
+                Saved Filters
+              </Link>
+            </nav>
+          </div>
+        <div className="flex items-center gap-2">
+          {/* Currency Selector */}
+          <CurrencySelector />
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
+
+          {/* Accessibility Settings */}
+          <AccessibilitySettings />
+
+          {/* Keyboard Shortcuts */}
+          <KeyboardShortcuts />
+
+          {/* Analytics Dashboard */}
+          {user && <AnalyticsDashboard />}
+
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -93,14 +145,19 @@ export function Header() {
                     Notifications
                   </Link>
                 </DropdownMenuItem>
-                {isDevelopment && (
-                  <DropdownMenuItem asChild>
-                    <Link href="/test-scrapers" className="flex items-center gap-2 cursor-pointer">
-                      <Search className="h-4 w-4" />
-                      Test Scrapers
-                    </Link>
-                  </DropdownMenuItem>
-                )}
+                <DropdownMenuItem asChild>
+                  <Link href="/app/saved-filters" className="flex items-center gap-2 cursor-pointer">
+                    <BookmarkIcon className="h-4 w-4" />
+                    Saved Filters
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/app/settings" className="flex items-center gap-2 cursor-pointer">
+                    <Settings className="h-4 w-4" />
+                    Settings
+                  </Link>
+                </DropdownMenuItem>
+                {/* Test pages removed as requested */}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut()} className="flex items-center gap-2 cursor-pointer text-destructive">
                   <LogOut className="h-4 w-4" />
@@ -125,5 +182,6 @@ export function Header() {
         </div>
       </div>
     </header>
+    </div>
   );
 }

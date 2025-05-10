@@ -68,10 +68,10 @@ export default function AppLayout({
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-grow container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8">
         {children}
       </main>
-      <footer className="border-t py-6 text-center text-sm text-muted-foreground">
+      <footer className="mt-auto border-t py-6 text-center text-sm text-muted-foreground">
         <p>&copy; {new Date().getFullYear()} ShopSavvy. All rights reserved.</p>
       </footer>
     </div>

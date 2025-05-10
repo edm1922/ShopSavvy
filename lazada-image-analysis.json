@@ -1,0 +1,80 @@
+{
+  "url": "https://www.lazada.com.ph/products/pdp-i3622238868.html",
+  "title": "Brooklyn Baseball Cap Unisex Korean Fashion Baseball Cap For Men And Women Sumbrero | Lazada PH",
+  "promotionalElements": [
+    {
+      "type": "LazMall Logo",
+      "count": 1,
+      "selectors": ".pdp-block img[src*=\"lazmall\"]",
+      "examples": [
+        "https://img.lazcdn.com/g/tps/images/ims-web/TB1whF0i9slXu8jSZFuXXXg7FXa.png"
+      ]
+    },
+    {
+      "type": "Promotional Badge",
+      "count": 1,
+      "selectors": ".pdp-mod-product-badge, .pdp-block img[src*=\"badge\"]",
+      "examples": [
+        "https://img.lazcdn.com/g/tps/imgextra/i2/O1CN01GeOVhh1c0uglyGAIk_!!6000000003539-2-tps-162-48.png"
+      ]
+    }
+  ],
+  "colorFamilyAnalysis": {
+    "found": true,
+    "sectionSelector": "pdp-mod-product-info-section sku-prop-selection",
+    "imageCount": 5,
+    "imageSelectors": ".sku-prop-content img, .sku-variable-img-wrap img",
+    "imageExamples": [
+      {
+        "src": "https://img.lazcdn.com/g/p/b79d8a8431acfd526cb427adf6d692b7.jpg_80x80q80.jpg_.webp",
+        "alt": "",
+        "className": "image",
+        "parentClass": "lazyload-wrapper "
+      },
+      {
+        "src": "https://img.lazcdn.com/g/p/83fa1862c34ba49a6790ab4bd2b80fcd.jpg_80x80q80.jpg_.webp",
+        "alt": "",
+        "className": "image",
+        "parentClass": "lazyload-wrapper "
+      },
+      {
+        "src": "https://img.lazcdn.com/g/p/a934aea70e652aeedaa22873f3bebf1b.jpg_80x80q80.jpg_.webp",
+        "alt": "",
+        "className": "image",
+        "parentClass": "lazyload-wrapper "
+      },
+      {
+        "src": "https://img.lazcdn.com/g/p/7b21c733a40fe6bb95768193b9850c5b.jpg_80x80q80.jpg_.webp",
+        "alt": "",
+        "className": "image",
+        "parentClass": "lazyload-wrapper "
+      },
+      {
+        "src": "https://img.lazcdn.com/g/p/da62b591b0fb873928fc4374ce793426.jpg_80x80q80.jpg_.webp",
+        "alt": "",
+        "className": "image",
+        "parentClass": "lazyload-wrapper "
+      }
+    ]
+  },
+  "mainImageAnalysis": {
+    "found": true,
+    "containerSelector": "gallery-preview-panel",
+    "imageCount": 2,
+    "imageSelectors": ".pdp-block-main img, .gallery-preview-panel img",
+    "imageExamples": [
+      {
+        "src": "https://img.lazcdn.com/g/tps/tfs/TB13MLwbOLaK1RjSZFxXXamPFXa-300-200.png",
+        "alt": "",
+        "className": "gallery-preview-panel__video-player",
+        "parentClass": "gallery-preview-panel__content gallery-preview-panel__content_video"
+      },
+      {
+        "src": "https://img.lazcdn.com/g/ff/kf/S4708883f4ad2457483bde683d6ee28e4h.jpg_720x720q80.jpg_.webp",
+        "alt": "Brooklyn Baseball Cap Unisex Korean Fashion Baseball Cap For Men And Women Sumbrero",
+        "className": "pdp-mod-common-image gallery-preview-panel__image",
+        "parentClass": "gallery-preview-panel__content gallery-preview-panel__content_video"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "shein-scraper-test",
+  "version": "1.0.0",
+  "description": "Test for enhanced Shein scraper with CAPTCHA bypassing",
+  "type": "module",
+  "main": "test-enhanced-shein-scraper.js",
+  "scripts": {
+    "test": "node test-enhanced-shein-scraper.js"
+  }
+}

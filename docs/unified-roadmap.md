@@ -4,32 +4,32 @@
 ShopSavvy is a cross-platform shopping companion app that helps users find the best deals across multiple e-commerce platforms, with a focus on local platforms like Shopee and Lazada. The app features an AI assistant, advanced search capabilities, price tracking, and personalized recommendations.
 
 ## Approach
-We're using a hybrid approach to gather product data from e-commerce platforms:
+We're using a direct scraping approach to gather product data from e-commerce platforms:
 
-1. **Serper.dev API**: Our primary method for searching products across multiple platforms
-   - Provides access to Google Shopping results without triggering CAPTCHAs
-   - Supports a wide range of e-commerce platforms
-   - Offers consistent data format and reliable results
+1. **Custom Web Scraping**: Our primary method for searching products across platforms
+   - Uses Playwright for browser automation
+   - Implements anti-detection measures
+   - Provides direct access to platform-specific data
 
-2. **Web Scraping (Fallback)**: Used as a fallback for specific platforms when needed
-   - Allows for more detailed product information
-   - Provides access to platform-specific features
-   - Used for price tracking and detailed product pages
+2. **Caching System**: Improves performance and reduces load on target websites
+   - Stores search results in Supabase database
+   - Implements TTL (Time To Live) for cache freshness
+   - Reduces repeated requests to the same platforms
 
-This hybrid approach allows us to:
-1. Move forward with development without waiting for API approvals
-2. Support a wide range of platforms (60+ e-commerce sites)
-3. Have reliable search results while avoiding anti-scraping measures
+This approach allows us to:
+1. Have full control over the search process and data extraction
+2. Focus on specific fashion and beauty platforms (Lazada, Zalora, etc.)
+3. Customize the data extraction for each platform
 
 ## Current State Assessment
 The project currently has:
 - [x] Basic Next.js application structure with TypeScript
 - [x] UI components using Shadcn/UI and Tailwind CSS
-- [x] Universal search functionality using Serper.dev API
-- [x] Basic AI assistant integration with Google Gemini
+- [x] Custom web scraping implementation with Playwright
+- [x] Basic AI assistant integration
 - [x] Product display grid with error handling
-- [x] Web scraping architecture design
-- [x] Support for multiple e-commerce platforms
+- [x] Web scraping architecture with caching
+- [x] Support for fashion and beauty e-commerce platforms
 - [x] Compelling landing page with responsive design
 - [x] Authentication system with Supabase
 - [x] Database tables for user profiles, saved products, price alerts, and search history
@@ -147,12 +147,12 @@ The project currently has:
   - [x] Add proper error handling and fallbacks
   - [x] Implement browser/server environment detection
   - [x] Remove mock data in favor of real data only
-- [x] Implement universal search across multiple marketplaces
-  - [x] Integrate Serper.dev API for Google Shopping results
-  - [x] Support a wide range of e-commerce platforms (60+ e-commerce sites)
-  - [x] Normalize data from different sources
+- [x] Implement search across fashion and beauty platforms
+  - [x] Create custom scrapers for Lazada and Zalora
+  - [x] Implement caching system for search results
+  - [x] Normalize data from different platforms
   - [x] Filter results by platform
-  - [x] Evaluate alternative APIs (DuckDuckGo) and select Serper.dev as the best option
+  - [x] Add error handling and fallback mechanisms
 - [ ] Implement faceted search with dynamic filters
 - [ ] Add "Similar Products" functionality
 - [ ] Create "Best Deal" highlighting
@@ -279,10 +279,10 @@ The project currently has:
 | Frontend     | Next.js, React, TypeScript, Tailwind CSS, Shadcn/UI       |
 | Backend      | Supabase (Auth, Database, Storage, Edge Functions)        |
 | Authentication| Supabase Auth with dual-client approach (anon + service role)|
-| AI Assistant | Google Gemini API, Genkit                                 |
-| Data Source  | Serper.dev API (primary), Web scraping with Playwright and CloudScraper (fallback) |
-| Search       | Google Shopping via Serper.dev API (evaluated DuckDuckGo but found Serper.dev superior) |
-| Anti-Bot     | Custom CloudScraper implementation for Cloudflare bypass |
+| AI Assistant | OpenAI API                                                |
+| Data Source  | Custom web scraping with Playwright                       |
+| Search       | Direct platform scraping with caching                     |
+| Anti-Bot     | Stealth techniques for browser automation                 |
 | Database     | Supabase PostgreSQL with Row Level Security               |
 | DevOps       | GitHub Actions, Vercel deployment                         |
 | Analytics    | Google Analytics, Supabase Analytics                      |
@@ -298,12 +298,13 @@ The project currently has:
 ## Challenges & Mitigations
 | Challenge                                | Mitigation                                                                                |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------- |
-| Search result consistency                | Use Serper.dev API as primary data source with standardized response format               |
-| Limited product details from API         | Implement fallback to direct scraping for detailed product pages when needed              |
-| API rate limits and costs                | Implement caching, optimize API calls, and consider tiered subscription plans             |
-| Platform coverage gaps                   | Support 60+ e-commerce platforms through Google Shopping results                          |
+| Search result consistency                | Use standardized data models and normalization for consistent results                     |
+| Web scraping reliability                 | Implement robust error handling, retries, and fallback mechanisms                         |
+| Anti-scraping measures                   | Use stealth techniques, browser fingerprint randomization, and proxy rotation             |
+| Performance concerns                     | Implement caching system to reduce repeated scraping of the same data                     |
+| Platform coverage                        | Focus on key fashion and beauty platforms with dedicated scrapers                         |
 | Cross-platform data normalization        | Create a standardized product model with flexible mappers for each platform               |
-| Cloudflare anti-bot protection           | Implement custom CloudScraper solution with stealth techniques and challenge solving      |
+| Scraper maintenance                      | Design modular scrapers that can be easily updated when websites change                   |
 | Authentication security                  | Use dual-client approach with appropriate permissions for different operations            |
 | Database security                        | Implement Row Level Security (RLS) policies for all tables                                |
 | AI assistant accuracy                    | Continuously train and refine the model with user feedback                                |

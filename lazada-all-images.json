@@ -1,0 +1,101 @@
+[
+  {
+    "src": "https://img.lazcdn.com/g/ff/kf/S2f8cf5f55137415b9bf9dc7ec1ff8b1cO.jpg_720x720q80.jpg_.webp",
+    "alt": "hat Cap Korean Letter Embroidered Soft Top Baseball Caps Men's Outdoor Leisure Women's",
+    "width": 330,
+    "height": 330,
+    "className": "pdp-mod-common-image gallery-preview-panel__image",
+    "id": "",
+    "parentSelector": ".gallery-preview-panel__content"
+  },
+  {
+    "src": "https://img.lazcdn.com/us/domino/4c7322a5c7c56033b88982d607e12587.png",
+    "alt": "",
+    "width": 150,
+    "height": 150,
+    "className": "get-the-app-lazada-qr",
+    "id": "",
+    "parentSelector": ".get-the-app-lazada-qr-wrap"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/imgextra/i3/O1CN01RNizk522j2cPtaRjc_!!6000000007155-2-tps-96-70.png",
+    "alt": "Lazada Logistics",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/imgextra/i2/O1CN01md1Up71hMVCAxe2HZ_!!6000000004263-2-tps-96-70.png",
+    "alt": "JT",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/imgextra/i2/O1CN013FblIV1u8qO5VGIBd_!!6000000005993-2-tps-96-70.png",
+    "alt": "FLASH EXPRESS",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/imgextra/i3/O1CN01WNUpFq1JZjrZz6erP_!!6000000001043-2-tps-96-70.png",
+    "alt": "Ninja Van",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/imgextra/i3/O1CN01gH5UI724D6E6K9Pko_!!6000000007356-2-tps-96-70.png",
+    "alt": "Ximex Delivery Express",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/us/domino/6105fe68-c6a5-4615-b588-effd8feee3c1_TH-96-70.png",
+    "alt": "J&T Cargo",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/us/domino/e4715f0c-f365-44aa-bdc9-08de28345c0f_PH-96-70.png",
+    "alt": "MCI",
+    "width": 96,
+    "height": 70,
+    "className": "lzd-icon-delivery",
+    "id": "",
+    "parentSelector": ".lzd-footer-width-32.lzd-footer-spacing"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/tfs/TB1lbmoqYr1gK0jSZR0XXbP8XXa-340-200.png",
+    "alt": "ISO",
+    "width": 102,
+    "height": 60,
+    "className": "",
+    "id": "",
+    "parentSelector": ".lzd-footer-verified-item"
+  },
+  {
+    "src": "https://img.lazcdn.com/g/tps/tfs/TB1jyJMv.H1gK0jSZSyXXXtlpXa-184-120.png",
+    "alt": "PCI DSS",
+    "width": 92,
+    "height": 60,
+    "className": "",
+    "id": "",
+    "parentSelector": ".lzd-footer-verified-item"
+  }
+]

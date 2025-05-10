@@ -2,7 +2,7 @@
  * Unified service for product operations across multiple platforms.
  */
 
-import { Product, ProductDetails, ProductReview } from './scrapers/types';
+import { Product, ProductDetails, ProductReview } from './types';
 import { getAllScrapers, getScraperForPlatform, getSupportedPlatforms } from './scrapers/scraper-factory';
 import { SearchFilters } from './shopping-apis';
 
@@ -95,6 +95,7 @@ export class ProductService {
         if (filters.maxPrice) url.searchParams.append('maxPrice', filters.maxPrice.toString());
         if (filters.brand) url.searchParams.append('brand', filters.brand);
         if (filters.minRating) url.searchParams.append('minRating', filters.minRating.toString());
+        if (filters.platform) url.searchParams.append('platform', filters.platform);
       }
 
       // Make the API request
@@ -273,6 +274,7 @@ export class ProductService {
           if (filters.maxPrice) url.searchParams.append('maxPrice', filters.maxPrice.toString());
           if (filters.brand) url.searchParams.append('brand', filters.brand);
           if (filters.minRating) url.searchParams.append('minRating', filters.minRating.toString());
+          if (filters.platform) url.searchParams.append('platform', filters.platform);
         }
 
         // Make the API request

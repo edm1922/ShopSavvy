@@ -1,14 +1,11 @@
 /**
- * API route for searching products across multiple platforms.
+ * API route for searching products using Serper.dev API
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getScraperForPlatform } from '@/services/scrapers/scraper-factory-server';
-import { Product } from '@/services/scrapers/types';
-import { parseNaturalLanguageQuery } from '@/services/search/advanced-search-parser';
-import { SearchFilters } from '@/services/shopping-apis';
+import { searchProducts } from '@/services/serper-api';
+import { Product, SearchFilters } from '@/services/types';
 import { createClient } from '@supabase/supabase-js';
-import * as SearchService from '@/services/search';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://olazrafayxrpqyajufle.supabase.co';
@@ -32,91 +29,151 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Get the search parameters from the URL
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get('query') || '';
-    const platformsParam = searchParams.get('platforms') || 'Shopee,Lazada';
-    const isNaturalLanguage = searchParams.get('natural') === 'true';
+    // Don't limit to specific platforms - allow all shops
+    const platformsParam = searchParams.get('platforms') || 'all';
+    const maxPages = parseInt(searchParams.get('maxPages') || '1', 10); // Default to 1 page
+    const forceRefresh = searchParams.get('forceRefresh') === 'true';
 
-    // Parse the natural language query if enabled
-    let parsedQuery = query;
+    // Extract filters from URL parameters
     let filters: SearchFilters = {};
-    let platforms = platformsParam.split(',');
-    let sortBy = searchParams.get('sortBy') || undefined;
+    const minPrice = searchParams.get('minPrice');
+    const maxPrice = searchParams.get('maxPrice');
+    const brand = searchParams.get('brand');
+    const sortBy = searchParams.get('sortBy') || undefined;
 
-    if (isNaturalLanguage && query) {
-      const parsed = parseNaturalLanguageQuery(query);
-      parsedQuery = parsed.query;
-      filters = parsed.filters;
+    if (minPrice) filters.minPrice = parseFloat(minPrice);
+    if (maxPrice) filters.maxPrice = parseFloat(maxPrice);
+    if (brand) filters.brand = brand;
 
-      if (parsed.platforms && parsed.platforms.length > 0) {
-        platforms = parsed.platforms;
-      }
-
-      if (parsed.sortBy) {
-        sortBy = parsed.sortBy;
-      }
-    } else {
-      // Extract filters from URL parameters
-      const minPrice = searchParams.get('minPrice');
-      const maxPrice = searchParams.get('maxPrice');
-      const brand = searchParams.get('brand');
-      const minRating = searchParams.get('minRating');
-
-      if (minPrice) filters.minPrice = parseFloat(minPrice);
-      if (maxPrice) filters.maxPrice = parseFloat(maxPrice);
-      if (brand) filters.brand = brand;
-      if (minRating) filters.minRating = parseFloat(minRating);
-    }
+    // Parse platforms
+    const platforms = platformsParam.split(',');
 
     // Validate the query
-    if (!parsedQuery) {
+    if (!query) {
       return NextResponse.json({
         success: false,
         error: 'Search query is required',
       }, { status: 400 });
     }
 
-    console.log(`Searching for "${parsedQuery}" on platforms: ${platforms.join(', ')}`);
-    console.log('Filters:', filters);
-    console.log('Sort by:', sortBy);
+    console.log(`[SearchAPI] Searching for "${query}" on platforms: ${platforms.join(', ')}`);
+    console.log('[SearchAPI] Filters:', filters);
+    console.log('[SearchAPI] Sort by:', sortBy);
+    console.log('[SearchAPI] Force refresh:', forceRefresh);
 
-    // Search for products using Serper.dev API as the primary search method
+    // Search for products using Serper.dev API
     let results: Product[] = [];
     const errors: string[] = [];
 
     try {
-      console.log(`Searching for "${parsedQuery}" across all marketplaces`);
+      console.log(`[SearchAPI] Searching for "${query}" using Serper.dev API`);
 
-      // Use the unified search service (will use either Serper.dev API or custom scrapers based on feature flag)
-      results = await SearchService.searchProducts(
-        parsedQuery,
-        filters,
-        platforms
-      );
+      // Call the Serper.dev API
+      // Pass maxPages to make multiple API calls with different query variations
+      // This will simulate pagination and get more diverse results
 
-      console.log(`Found ${results.length} results`);
+      // If forceRefresh is true, we want to completely bypass the cache
+      // and get fresh results for all platforms
+      if (forceRefresh) {
+        console.log(`[SearchAPI] Force refresh requested, bypassing cache completely`);
 
-      // Log the breakdown of results by platform
-      const resultsByPlatform = platforms.map(platform => {
-        const platformResults = results.filter(product =>
-          product.platform.toLowerCase() === platform.toLowerCase()
+        // First, get any existing cached results to see what platforms we have
+        const tempResults = await searchProducts(query, {
+          useCache: true, // Temporarily use cache just to check what we have
+          maxResults: 1,  // We don't need actual results, just checking platforms
+          maxPages: 1     // Minimal API usage
+        });
+
+        // Then do a fresh search with cache disabled
+        results = await searchProducts(query, {
+          useCache: false, // Disable cache to get fresh results
+          maxResults: 200, // Fixed limit per API call
+          maxPages: maxPages, // Number of API calls to make with different query variations
+          forceRefreshAll: true // New flag to indicate we want to refresh all platforms
+        });
+
+        console.log(`[SearchAPI] Force refresh completed, got ${results.length} fresh results`);
+      } else {
+        // Check if we need to implement platform-specific caching
+        // This happens when the user clicks the regular search button
+        // We want to use cached results for platforms we already have
+        // and only fetch fresh results for platforms we don't have
+
+        // First, get any existing cached results to see what platforms we have
+        const cachedResults = await searchProducts(query, {
+          useCache: true, // Use cache to check what we have
+          maxResults: 1,  // We don't need actual results, just checking platforms
+          maxPages: 1     // Minimal API usage
+        });
+
+        // Get the platforms we already have in cache
+        const cachedPlatforms = new Set();
+        if (cachedResults && cachedResults.length > 0) {
+          cachedResults.forEach(product => {
+            if (product.platform) {
+              cachedPlatforms.add(product.platform.toLowerCase());
+            }
+          });
+        }
+
+        console.log(`[SearchAPI] Found cached results for platforms: ${Array.from(cachedPlatforms).join(', ')}`);
+
+        // Define the major platforms we support
+        const majorPlatforms = ['lazada', 'zalora', 'shein'];
+
+        // Determine which platforms we need to search for
+        const platformsToSearch = majorPlatforms.filter(platform =>
+          !cachedPlatforms.has(platform)
         );
-        return {
-          platform,
-          count: platformResults.length
-        };
-      });
 
-      console.log('Results by platform:', resultsByPlatform);
+        if (platformsToSearch.length > 0) {
+          console.log(`[SearchAPI] Need to search for additional platforms: ${platformsToSearch.join(', ')}`);
 
-      // Check if any platforms have no results
-      const platformsWithNoResults = resultsByPlatform
-        .filter(p => p.count === 0)
-        .map(p => p.platform);
+          // Do a search for just the missing platforms
+          const newResults = await searchProducts(query, {
+            useCache: true, // Enable cache for the search
+            maxResults: 200, // Fixed limit per API call
+            maxPages: maxPages, // Number of API calls to make with different query variations
+            platformsToSearch: platformsToSearch // Only search for missing platforms
+          });
 
-      if (platformsWithNoResults.length > 0) {
-        console.log(`No results found for platforms: ${platformsWithNoResults.join(', ')}`);
+          console.log(`[SearchAPI] Got ${newResults.length} new results for missing platforms`);
+
+          // Combine with cached results
+          results = [...cachedResults, ...newResults];
+          console.log(`[SearchAPI] Combined results: ${results.length} total`);
+        } else {
+          console.log(`[SearchAPI] All major platforms are already cached, using cached results`);
+          results = cachedResults;
+        }
       }
-    } catch (error) {
-      console.error('Error during search process:', error);
+
+      console.log(`[SearchAPI] Found ${results.length} results from Serper.dev API`);
+
+      // Don't filter by platform - include all shops
+      // Just log the platforms found for debugging
+      const platformsFound = new Set(results.map(product => product.platform));
+      console.log(`[SearchAPI] Platforms found: ${Array.from(platformsFound).join(', ')}`);
+      console.log(`[SearchAPI] Total results before filtering: ${results.length}`);
+
+      // Apply additional filters
+      if (minPrice !== null) {
+        results = results.filter(product => product.price >= parseFloat(minPrice!));
+      }
+
+      if (maxPrice !== null) {
+        results = results.filter(product => product.price <= parseFloat(maxPrice!));
+      }
+
+      if (brand) {
+        results = results.filter(product =>
+          product.title.toLowerCase().includes(brand.toLowerCase())
+        );
+      }
+
+      console.log(`[SearchAPI] After applying filters: ${results.length} results`);
+    } catch (error: any) {
+      console.error('[SearchAPI] Error during search process:', error);
       errors.push(`Error during search process: ${error.message}`);
     }
 
@@ -126,14 +183,14 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     }
 
     // Save the search query to the database (but don't wait for it to complete)
-    saveSearchQuery(query, parsedQuery, platforms, filters, results.length).catch(err => {
+    saveSearchQuery(query, query, platforms, filters, results.length).catch(err => {
       console.warn('Failed to save search query, but continuing with response:', err);
     });
 
     // Return the results
     return NextResponse.json({
       success: true,
-      query: parsedQuery,
+      query: query,
       filters,
       platforms,
       sortBy,
@@ -160,27 +217,93 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
 function sortResults(results: Product[], sortBy: string): void {
   switch (sortBy) {
     case 'price_asc':
+      // Sort by price ascending (cheapest first)
       results.sort((a, b) => a.price - b.price);
+      console.log('[SearchAPI] Sorted results by price ascending (cheapest first)');
       break;
+
     case 'price_desc':
+      // Sort by price descending (most expensive first)
       results.sort((a, b) => b.price - a.price);
+      console.log('[SearchAPI] Sorted results by price descending (most expensive first)');
       break;
+
     case 'rating_desc':
+      // Sort by rating descending (highest rated first)
       results.sort((a, b) => {
         const ratingA = a.rating || 0;
         const ratingB = b.rating || 0;
         return ratingB - ratingA;
       });
+      console.log('[SearchAPI] Sorted results by rating descending (highest rated first)');
       break;
+
     case 'popularity_desc':
-      results.sort((a, b) => {
-        const salesA = a.sales || 0;
-        const salesB = b.sales || 0;
-        return salesB - salesA;
-      });
+      // Sort by popularity/sales descending (most popular first)
+      // First try to sort by sales if available
+      const hasSales = results.some(product => product.sales !== undefined && product.sales > 0);
+
+      if (hasSales) {
+        results.sort((a, b) => {
+          const salesA = a.sales || 0;
+          const salesB = b.sales || 0;
+          return salesB - salesA;
+        });
+        console.log('[SearchAPI] Sorted results by sales descending (most popular first)');
+      } else {
+        // Fall back to rating and then review count if sales data isn't available
+        results.sort((a, b) => {
+          const ratingA = a.rating || 0;
+          const ratingB = b.rating || 0;
+
+          // If ratings are the same, sort by review count
+          if (ratingA === ratingB) {
+            const reviewsA = a.ratingCount || 0;
+            const reviewsB = b.ratingCount || 0;
+            return reviewsB - reviewsA;
+          }
+
+          return ratingB - ratingA;
+        });
+        console.log('[SearchAPI] Sorted results by rating and review count (as popularity proxy)');
+      }
       break;
+
+    case 'date_desc':
+      // For newest items, we don't have direct date information
+      // Use a combination of factors that might indicate newer items
+      // This is a best-effort approach since we don't have actual date data
+      results.sort((a, b) => {
+        // Prioritize items with "new" in the title
+        const aHasNew = a.title.toLowerCase().includes('new');
+        const bHasNew = b.title.toLowerCase().includes('new');
+
+        if (aHasNew && !bHasNew) return -1;
+        if (!aHasNew && bHasNew) return 1;
+
+        // Then try to use rating count as a proxy for recency
+        // Items with fewer ratings might be newer
+        const reviewsA = a.ratingCount || 0;
+        const reviewsB = b.ratingCount || 0;
+
+        // If both have ratings, assume fewer ratings means newer
+        if (reviewsA > 0 && reviewsB > 0) {
+          return reviewsA - reviewsB;
+        }
+
+        // If only one has ratings, the one without ratings might be newer
+        if (reviewsA > 0 && reviewsB === 0) return 1;
+        if (reviewsA === 0 && reviewsB > 0) return -1;
+
+        // Default to no change in order
+        return 0;
+      });
+      console.log('[SearchAPI] Sorted results to prioritize potentially newer items');
+      break;
+
     default:
-      // No sorting
+      // No sorting - use the default order from the API
+      console.log('[SearchAPI] No sorting applied, using default order');
       break;
   }
 }

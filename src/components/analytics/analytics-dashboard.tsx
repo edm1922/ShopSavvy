@@ -1,0 +1,258 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@/components/ui/tabs';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  BarChart,
+  LineChart,
+  PieChart,
+  Activity,
+  Search,
+  ShoppingBag,
+  Users,
+  Trash2,
+} from 'lucide-react';
+import { getSearchAnalytics, getStoredEvents, clearStoredEvents } from '@/services/analytics';
+
+export function AnalyticsDashboard() {
+  const [open, setOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview');
+  const [analytics, setAnalytics] = useState({
+    totalSearches: 0,
+    topSearches: [] as { query: string; count: number }[],
+    averageResultCount: 0,
+  });
+  const [events, setEvents] = useState<any[]>([]);
+
+  // Load analytics data when the dialog is opened
+  useEffect(() => {
+    if (open) {
+      const searchAnalytics = getSearchAnalytics();
+      setAnalytics(searchAnalytics);
+      setEvents(getStoredEvents());
+    }
+  }, [open]);
+
+  // Handle clearing analytics data
+  const handleClearAnalytics = () => {
+    if (confirm('Are you sure you want to clear all analytics data? This cannot be undone.')) {
+      clearStoredEvents();
+      setAnalytics({
+        totalSearches: 0,
+        topSearches: [],
+        averageResultCount: 0,
+      });
+      setEvents([]);
+    }
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="ghost" size="icon" className="h-9 w-9 rounded-md">
+          <Activity className="h-4 w-4" />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[800px] max-h-[80vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Analytics Dashboard</DialogTitle>
+          <DialogDescription>
+            View analytics data for your ShopSavvy usage.
+          </DialogDescription>
+        </DialogHeader>
+        
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="overview">
+              <BarChart className="h-4 w-4 mr-2" />
+              Overview
+            </TabsTrigger>
+            <TabsTrigger value="searches">
+              <Search className="h-4 w-4 mr-2" />
+              Searches
+            </TabsTrigger>
+            <TabsTrigger value="events">
+              <Activity className="h-4 w-4 mr-2" />
+              Events
+            </TabsTrigger>
+          </TabsList>
+          
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium">Total Searches</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{analytics.totalSearches}</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium">Avg. Results</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{analytics.averageResultCount.toFixed(0)}</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-sm font-medium">Total Events</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{events.length}</div>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Activity</CardTitle>
+                <CardDescription>Your recent searches and interactions</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {events.length === 0 ? (
+                  <p className="text-center py-4 text-muted-foreground">No activity recorded yet.</p>
+                ) : (
+                  <div className="space-y-4">
+                    {events.slice(-5).reverse().map((event, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        {event.type === 'search' && <Search className="h-5 w-5 text-blue-500" />}
+                        {event.type === 'product_view' && <ShoppingBag className="h-5 w-5 text-green-500" />}
+                        {event.type === 'page_view' && <Users className="h-5 w-5 text-purple-500" />}
+                        {event.type === 'error' && <Activity className="h-5 w-5 text-red-500" />}
+                        <div className="space-y-1">
+                          <p className="text-sm font-medium">{event.type.replace('_', ' ')}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {new Date(event.timestamp).toLocaleString()}
+                          </p>
+                          {event.type === 'search' && (
+                            <p className="text-xs">
+                              Query: "{event.data.query}" - {event.data.resultCount} results
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          {/* Searches Tab */}
+          <TabsContent value="searches" className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle>Top Searches</CardTitle>
+                <CardDescription>Your most frequent search queries</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {analytics.topSearches.length === 0 ? (
+                  <p className="text-center py-4 text-muted-foreground">No searches recorded yet.</p>
+                ) : (
+                  <div className="space-y-2">
+                    {analytics.topSearches.map((search, index) => (
+                      <div key={index} className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm font-medium">{index + 1}.</span>
+                          <span className="text-sm">"{search.query}"</span>
+                        </div>
+                        <span className="text-sm text-muted-foreground">{search.count} searches</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>Search Timeline</CardTitle>
+                <CardDescription>Your search activity over time</CardDescription>
+              </CardHeader>
+              <CardContent className="h-[200px] flex items-center justify-center">
+                <p className="text-muted-foreground">
+                  Search timeline visualization would appear here in a full implementation.
+                </p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          {/* Events Tab */}
+          <TabsContent value="events" className="space-y-4">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <div>
+                  <CardTitle>All Events</CardTitle>
+                  <CardDescription>Raw event data for debugging</CardDescription>
+                </div>
+                <Button 
+                  variant="destructive" 
+                  size="sm" 
+                  onClick={handleClearAnalytics}
+                  className="h-8"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  Clear Data
+                </Button>
+              </CardHeader>
+              <CardContent>
+                {events.length === 0 ? (
+                  <p className="text-center py-4 text-muted-foreground">No events recorded yet.</p>
+                ) : (
+                  <div className="max-h-[300px] overflow-y-auto border rounded-md">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b bg-muted">
+                          <th className="py-2 px-4 text-left">Type</th>
+                          <th className="py-2 px-4 text-left">Timestamp</th>
+                          <th className="py-2 px-4 text-left">Data</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {events.slice().reverse().map((event, index) => (
+                          <tr key={index} className="border-b">
+                            <td className="py-2 px-4">{event.type}</td>
+                            <td className="py-2 px-4">{new Date(event.timestamp).toLocaleString()}</td>
+                            <td className="py-2 px-4">
+                              <pre className="text-xs overflow-x-auto max-w-[300px]">
+                                {JSON.stringify(event.data, null, 2)}
+                              </pre>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </DialogContent>
+    </Dialog>
+  );
+}
