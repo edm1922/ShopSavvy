@@ -56,7 +56,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       message: "Product reviews are not available. This feature will be implemented in a future update."
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error processing product reviews request:', error);
 
     return NextResponse.json({

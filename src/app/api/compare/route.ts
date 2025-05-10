@@ -90,15 +90,15 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         count: filteredResults.length,
         results: filteredResults
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error searching products:', error);
 
       return NextResponse.json({
         success: false,
-        error: `Error searching products: ${error.message}`,
+        error: `Error searching products: ${error?.message || 'Unknown error'}`,
       }, { status: 500 });
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error processing comparison request:', error);
 
     return NextResponse.json({

@@ -54,7 +54,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       },
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error processing product details request:', error);
 
     return NextResponse.json({
