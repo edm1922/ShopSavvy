@@ -58,9 +58,9 @@ const HeroSection = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link href="/register">
+              <Link href="/coming-soon">
                 <Button size="lg" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0 px-8 text-lg h-14">
-                  Get Started
+                  Download App
                 </Button>
               </Link>
               <Link href="#how-it-works">

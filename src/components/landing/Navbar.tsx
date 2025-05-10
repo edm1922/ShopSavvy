@@ -60,9 +60,11 @@ const Navbar = () => {
               Sign Up
             </Button>
           </Link>
-          <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0">
-            Download App
-          </Button>
+          <Link href="/coming-soon">
+            <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0">
+              Download App
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -128,9 +130,11 @@ const Navbar = () => {
                       Sign Up
                     </Button>
                   </Link>
-                  <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white w-full py-6 text-lg">
-                    Download App
-                  </Button>
+                  <Link href="/coming-soon" onClick={toggleMenu}>
+                    <Button className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white w-full py-6 text-lg">
+                      Download App
+                    </Button>
+                  </Link>
                 </div>
               </div>
               {/* Decorative gradient */}

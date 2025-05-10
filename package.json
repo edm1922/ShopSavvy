@@ -13,7 +13,9 @@
     "typecheck": "tsc --noEmit",
     "install:scraping": "npm install axios cheerio puppeteer @types/cheerio @types/puppeteer",
     "install:auth": "npm install @supabase/supabase-js @supabase/auth-helpers-nextjs",
-    "test:lazada": "next dev -p 9002 & sleep 5 && curl http://localhost:9002/api/test/lazada"
+    "test:lazada": "next dev -p 9002 & sleep 5 && curl http://localhost:9002/api/test/lazada",
+    "deploy:check": "node scripts/cleanup-for-deployment.js",
+    "deploy:vercel": "vercel"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.6.2",
