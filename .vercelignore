@@ -66,6 +66,9 @@ test-specific-credentials.js
 
 # Test directories
 /src/services/scrapers/__tests__
+/src/services/scrapers
+/src/services/search
+/supabase/functions
 /savvy-site-sightings-report
 
 # IDE

@@ -1,11 +1,18 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "noEmit": true
+  },
   "exclude": [
     "node_modules",
     "**/*.test.ts",
     "**/*.test.tsx",
     "**/*.spec.ts",
     "**/*.spec.tsx",
-    "src/scripts/**/*"
+    "src/scripts/**/*",
+    "src/services/scrapers/**/*",
+    "src/services/search/**/*",
+    "supabase/functions/**/*"
   ]
 }
