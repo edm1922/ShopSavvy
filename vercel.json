@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": ".next",
   "cleanUrls": true,
   "trailingSlash": false,
   "github": {
     "silent": true
   },
+  "ignoreCommand": "echo 'Ignoring scripts directory'",
   "headers": [
     {
       "source": "/(.*)",

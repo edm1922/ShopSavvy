@@ -55,6 +55,7 @@ test-all-platforms.js
 test-serper-platforms.js
 test-cache.js
 test-specific-credentials.js
+/src/scripts/*
 
 # Test pages and routes
 /src/app/test-*
