@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { ProductGrid } from '@/components/app/ProductGrid';
 import { VirtualizedProductGrid } from '@/components/app/VirtualizedProductGrid';
 import { PhoneMockup } from '@/components/landing/PhoneMockup';
+import { DevelopmentDisclaimer } from '@/components/app/DevelopmentDisclaimer';
 
 // Now using the fixed shopping-apis that handles browser environment properly
 import { searchProducts } from '@/services/shopping-apis';
@@ -519,6 +520,9 @@ export default function AppPage() {
 
   return (
     <div className="container mx-auto py-8 px-4">
+      {/* Development Disclaimer */}
+      <DevelopmentDisclaimer className="max-w-4xl mx-auto mb-6" />
+
       <div className="mb-8">
         <form onSubmit={handleSearch} className="flex flex-col max-w-xl mx-auto">
           <div className="flex w-full mb-2">
