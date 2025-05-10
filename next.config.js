@@ -75,11 +75,7 @@ const nextConfig = {
 
   // Experimental features
   experimental: {
-    // Enable server components
-    serverComponents: true,
-
-    // Enable app directory
-    appDir: true,
+    // Add any current experimental features here if needed
   },
 
   // Configure images

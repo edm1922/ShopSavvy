@@ -1,9 +1,9 @@
 /**
- * API route for comparing products across platforms.
+ * API route for comparing products across platforms using Serper.dev API.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getScraperForPlatform } from '@/services/scrapers/scraper-factory-server';
+import { searchProducts } from '@/services/serper-api';
 import { Product } from '@/services/types';
 import { SearchFilters } from '@/services/shopping-apis';
 
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     // Get the search parameters from the URL
     const searchParams = request.nextUrl.searchParams;
     const query = searchParams.get('query') || '';
-    const platformsParam = searchParams.get('platforms') || 'Shopee,Lazada';
+    const platformsParam = searchParams.get('platforms') || 'lazada,zalora,shein';
 
     // Extract filters from URL parameters
     const filters: SearchFilters = {};
@@ -46,37 +46,58 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     console.log(`Comparing products for "${query}" on platforms: ${platforms.join(', ')}`);
     console.log('Filters:', filters);
 
-    // Search for products on each platform
-    const results: Product[] = [];
-    const errors: string[] = [];
+    // Search for products using Serper.dev API
+    try {
+      const results = await searchProducts(query, {
+        platformsToSearch: platforms,
+        maxPages: 1
+      });
 
-    for (const platform of platforms) {
-      try {
-        const scraper = getScraperForPlatform(platform);
-        const platformResults = await scraper.searchProducts(query, filters);
+      // Apply filters
+      let filteredResults = results;
 
-        console.log(`Found ${platformResults.length} results on ${platform}`);
-
-        results.push(...platformResults);
-      } catch (error) {
-        console.error(`Error searching on ${platform}:`, error);
-        errors.push(`Error searching on ${platform}: ${error.message}`);
+      if (filters.minPrice) {
+        filteredResults = filteredResults.filter(product => product.price >= filters.minPrice!);
       }
+
+      if (filters.maxPrice) {
+        filteredResults = filteredResults.filter(product => product.price <= filters.maxPrice!);
+      }
+
+      if (filters.brand) {
+        filteredResults = filteredResults.filter(product =>
+          product.brand?.toLowerCase().includes(filters.brand!.toLowerCase())
+        );
+      }
+
+      if (filters.minRating) {
+        filteredResults = filteredResults.filter(product =>
+          product.rating && product.rating >= filters.minRating!
+        );
+      }
+
+      // Sort the results by price (lowest first)
+      filteredResults.sort((a, b) => a.price - b.price);
+
+      console.log(`Found ${filteredResults.length} results after filtering`);
+
+      // Return the results
+      return NextResponse.json({
+        success: true,
+        query,
+        filters,
+        platforms,
+        count: filteredResults.length,
+        results: filteredResults
+      });
+    } catch (error) {
+      console.error('Error searching products:', error);
+
+      return NextResponse.json({
+        success: false,
+        error: `Error searching products: ${error.message}`,
+      }, { status: 500 });
     }
-
-    // Sort the results by price (lowest first)
-    results.sort((a, b) => a.price - b.price);
-
-    // Return the results
-    return NextResponse.json({
-      success: true,
-      query,
-      filters,
-      platforms,
-      count: results.length,
-      results,
-      errors: errors.length > 0 ? errors : undefined,
-    });
   } catch (error) {
     console.error('Error processing comparison request:', error);
 
