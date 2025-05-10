@@ -1,6 +1,6 @@
 # ShopSavvy: Your Shopping Companion App
 
-ShopSavvy is a cross-platform shopping companion app that helps users find the best deals across multiple e-commerce platforms, with a focus on local platforms like Shopee and Lazada. The app features an AI assistant, advanced search capabilities, price tracking, and personalized recommendations.
+ShopSavvy is a cross-platform shopping companion app that helps users find the best deals across multiple e-commerce platforms, with a focus on Philippine fashion and beauty platforms like Lazada, Zalora, and Shein. The app features an AI assistant, advanced search capabilities, price tracking, and personalized recommendations.
 
 ## Project Overview
 
@@ -17,7 +17,7 @@ For detailed development plans, see our [Unified Roadmap](docs/unified-roadmap.m
 - **Frontend**: Next.js, React, TypeScript, Tailwind CSS, Shadcn/UI
 - **Backend**: Supabase (Auth, Database, Storage, Edge Functions)
 - **AI Assistant**: Google Gemini API, Genkit
-- **Data Source**: Web scraping (Axios, Cheerio)
+- **Data Source**: Serper.dev API with caching
 - **DevOps**: GitHub Actions, Vercel deployment
 - **Analytics**: Google Analytics, Supabase Analytics
 
@@ -57,49 +57,52 @@ For detailed development plans, see our [Unified Roadmap](docs/unified-roadmap.m
 
 5. Open [http://localhost:9002](http://localhost:9002) in your browser.
 
-## Web Scraping Approach
+## Serper.dev API Integration
 
-ShopSavvy uses web scraping to gather product data from e-commerce platforms. This approach was chosen because:
+ShopSavvy uses the Serper.dev API to gather product data from e-commerce platforms. This approach was chosen because:
 
-1. Official API access is often limited or requires lengthy approval processes
-2. Web scraping allows us to support a wider range of platforms
-3. We have more control over the data we can extract
+1. It provides more reliable and consistent results than direct web scraping
+2. It handles anti-bot detection and CAPTCHA challenges automatically
+3. It allows us to search across multiple platforms with a single API call
+4. It reduces maintenance overhead compared to custom web scrapers
 
-### Scraping Configuration
+### API Configuration
 
-The web scraping functionality can be configured through environment variables:
+The Serper.dev API integration can be configured through environment variables:
 
-- `NEXT_PUBLIC_USE_REAL_SCRAPING`: Set to `true` to enable real scraping, `false` to use mock data
-- `NEXT_PUBLIC_ENABLED_PLATFORMS`: Comma-separated list of platforms to scrape (e.g., `Shopee,Lazada`)
-- `NEXT_PUBLIC_SCRAPING_REQUEST_DELAY`: Delay between requests in milliseconds
-- `NEXT_PUBLIC_SCRAPING_MAX_RETRIES`: Maximum number of retries for failed requests
-- `NEXT_PUBLIC_SCRAPING_CACHE_TTL`: Cache time-to-live in seconds
+- `SERPER_API_KEY`: Your Serper.dev API key
+- `NEXT_PUBLIC_ENABLE_SEARCH_CACHE`: Set to `true` to enable caching of search results (recommended)
+- `NEXT_PUBLIC_ENABLED_PLATFORMS`: Comma-separated list of platforms to search (e.g., `Lazada,Zalora,Shein`)
 
-### Legal Considerations
+### Caching System
 
-When using the web scraping functionality, please be aware of the following:
+To optimize API usage and improve performance, ShopSavvy implements a caching system:
 
-1. Respect the terms of service of the websites you scrape
-2. Implement rate limiting to avoid overloading servers
-3. Consider using a proxy rotation system for production use
-4. Only store necessary data and attribute sources appropriately
+1. Search results are cached in Supabase for 7 days
+2. Selective caching allows fetching fresh data only for platforms not in cache
+3. Cache can be selectively refreshed for specific platforms
 
 ## Features
 
 ### Current Features
 
-- Basic product search with mock data
-- Simple product display grid
-- AI assistant for search suggestions
+- Cross-platform product search across Lazada, Zalora, and Shein
+- Advanced filtering by price, platform, and brand
+- AI-powered shopping assistant with search suggestions
+- User authentication with Supabase
+- Responsive product display grid with detailed information
+- Caching system for improved performance
+- "COMING SOON" page for mobile app announcement
+- Optimized for Vercel deployment
 
 ### Upcoming Features
 
-- Cross-platform price comparison
-- Price history tracking
-- Price drop alerts
-- Personalized recommendations
-- User accounts and wishlists
-- Mobile optimization
+- Price history tracking and visualization
+- Price drop alerts via email and browser notifications
+- Enhanced AI-powered personalized recommendations
+- User wishlists and saved searches
+- Mobile app with offline capabilities
+- Social sharing features
 
 ## Project Structure
 
@@ -107,18 +110,31 @@ When using the web scraping functionality, please be aware of the following:
 shopsavvy/
 ├── docs/                  # Documentation files
 ├── public/                # Static assets
+├── scripts/               # Utility scripts
+│   └── cleanup-for-deployment.js  # Deployment cleanup script
 ├── src/
-│   ├── ai/                # AI assistant integration
+│   ├── ai/                # AI assistant integration with Google Gemini
 │   ├── app/               # Next.js app router
+│   │   ├── (app)/         # App routes (dashboard, product pages)
+│   │   ├── (auth)/        # Authentication routes (login, register)
+│   │   ├── api/           # API routes
+│   │   └── coming-soon/   # Coming soon page for mobile app
 │   ├── components/        # React components
 │   │   ├── app/           # Application-specific components
+│   │   ├── landing/       # Landing page components
 │   │   └── ui/            # UI components (Shadcn/UI)
+│   ├── config/            # Configuration files
+│   ├── contexts/          # React context providers
 │   ├── hooks/             # Custom React hooks
 │   ├── lib/               # Utility functions
 │   └── services/          # Service layer
-│       └── scrapers/      # Web scraping implementation
+│       ├── ai/            # AI service integrations
+│       ├── cache/         # Caching services
+│       └── shopping-apis/ # Shopping API integrations
 ├── .env.local             # Environment variables
-├── next.config.ts         # Next.js configuration
+├── .vercelignore          # Files to exclude from Vercel deployment
+├── next.config.js         # Next.js configuration
+├── vercel.json            # Vercel deployment configuration
 └── package.json           # Project dependencies
 ```
 
@@ -134,6 +150,20 @@ shopsavvy/
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## Deployment
+
+ShopSavvy is optimized for deployment on Vercel. To deploy:
+
+1. Push your code to GitHub
+2. Connect your GitHub repository to Vercel
+3. Configure environment variables in the Vercel dashboard
+4. Deploy the project
+
+The app includes:
+- A `vercel.json` configuration file with optimized settings
+- A `.vercelignore` file to exclude test files and debugging tools
+- A cleanup script (`scripts/cleanup-for-deployment.js`) to identify files that should be excluded
+
 ## Acknowledgments
 
 - [Next.js](https://nextjs.org/)
@@ -142,3 +172,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - [Shadcn/UI](https://ui.shadcn.com/)
 - [Supabase](https://supabase.io/)
 - [Google Gemini](https://ai.google.dev/)
+- [Serper.dev](https://serper.dev/)
+- [Vercel](https://vercel.com/)

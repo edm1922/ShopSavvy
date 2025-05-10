@@ -1,40 +1,42 @@
 # ShopSavvy: Your Shopping Companion App - Unified Roadmap
 
 ## Project Overview
-ShopSavvy is a cross-platform shopping companion app that helps users find the best deals across multiple e-commerce platforms, with a focus on local platforms like Shopee and Lazada. The app features an AI assistant, advanced search capabilities, price tracking, and personalized recommendations.
+ShopSavvy is a cross-platform shopping companion app that helps users find the best deals across multiple e-commerce platforms, with a focus on Philippine fashion and beauty platforms like Lazada, Zalora, and Shein. The app features an AI assistant powered by Google Gemini, advanced search capabilities using Serper.dev API, price tracking, and personalized recommendations.
 
 ## Approach
-We're using a direct scraping approach to gather product data from e-commerce platforms:
+We're using the Serper.dev API to gather product data from e-commerce platforms:
 
-1. **Custom Web Scraping**: Our primary method for searching products across platforms
-   - Uses Playwright for browser automation
-   - Implements anti-detection measures
-   - Provides direct access to platform-specific data
+1. **Serper.dev API Integration**: Our primary method for searching products across platforms
+   - Provides reliable access to product data from multiple platforms
+   - Handles anti-bot detection and CAPTCHA challenges automatically
+   - Offers consistent data format across different platforms
 
-2. **Caching System**: Improves performance and reduces load on target websites
-   - Stores search results in Supabase database
-   - Implements TTL (Time To Live) for cache freshness
-   - Reduces repeated requests to the same platforms
+2. **Selective Caching System**: Improves performance and reduces API usage
+   - Stores search results in Supabase database for 7 days
+   - Implements selective caching to refresh only missing platforms
+   - Reduces API calls by reusing cached results when appropriate
 
 This approach allows us to:
-1. Have full control over the search process and data extraction
-2. Focus on specific fashion and beauty platforms (Lazada, Zalora, etc.)
-3. Customize the data extraction for each platform
+1. Focus on building features rather than maintaining scrapers
+2. Support multiple Philippine fashion and beauty platforms (Lazada, Zalora, Shein)
+3. Provide a more reliable and consistent user experience
 
 ## Current State Assessment
 The project currently has:
-- [x] Basic Next.js application structure with TypeScript
+- [x] Next.js application structure with TypeScript and App Router
 - [x] UI components using Shadcn/UI and Tailwind CSS
-- [x] Custom web scraping implementation with Playwright
-- [x] Basic AI assistant integration
-- [x] Product display grid with error handling
-- [x] Web scraping architecture with caching
-- [x] Support for fashion and beauty e-commerce platforms
+- [x] Serper.dev API integration for product search
+- [x] Google Gemini AI assistant integration
+- [x] Product display grid with filtering and error handling
+- [x] Selective caching system for improved performance
+- [x] Support for Lazada, Zalora, and Shein platforms
 - [x] Compelling landing page with responsive design
 - [x] Authentication system with Supabase
 - [x] Database tables for user profiles, saved products, price alerts, and search history
 - [x] Middleware for route handling
 - [x] Cross-platform product search and comparison
+- [x] "COMING SOON" page for mobile app announcement
+- [x] Vercel deployment configuration with optimizations
 
 ## Roadmap Timeline
 
@@ -132,33 +134,34 @@ The project currently has:
   - [x] Add unoptimized image loading for external domains
 - [ ] Add pagination or infinite scroll for search results
 
-### Phase 2: Comparison & Search Enhancement (Current)
+### Phase 2: Comparison & Search Enhancement (Completed)
 **Goal**: Improve search capabilities and implement comparison features
 
 #### Week 3: Search Enhancement
-- [x] Refine scrapers based on testing feedback
-  - [x] Create browser-safe scraper factory
-  - [x] Implement server-only API routes for product operations
-  - [x] Add fallbacks for Node.js built-in modules
-  - [x] Create dynamic Playwright loader
-  - [x] Implement CloudScraper for Cloudflare bypass
-  - [x] Add anti-bot detection measures
+- [x] Replace custom scrapers with Serper.dev API integration
+  - [x] Implement Serper.dev API client
+  - [x] Create server-only API routes for product operations
+  - [x] Add proper error handling and fallbacks
+  - [x] Implement selective caching system
 - [x] Optimize search performance and reliability
   - [x] Add proper error handling and fallbacks
   - [x] Implement browser/server environment detection
   - [x] Remove mock data in favor of real data only
 - [x] Implement search across fashion and beauty platforms
-  - [x] Create custom scrapers for Lazada and Zalora
+  - [x] Support for Lazada, Zalora, and Shein
   - [x] Implement caching system for search results
   - [x] Normalize data from different platforms
   - [x] Filter results by platform
   - [x] Add error handling and fallback mechanisms
-- [ ] Implement faceted search with dynamic filters
-- [ ] Add "Similar Products" functionality
-- [ ] Create "Best Deal" highlighting
-- [ ] Implement search result clustering by category/type
-- [ ] Add product image gallery view
-- [ ] Implement product variant selection
+- [x] Implement faceted search with dynamic filters
+  - [x] Add price range filters
+  - [x] Add platform filters
+  - [x] Add brand filters
+- [x] Optimize for Vercel deployment
+  - [x] Add vercel.json configuration
+  - [x] Create .vercelignore file
+  - [x] Add deployment scripts
+  - [x] Create "COMING SOON" page for mobile app
 
 #### Week 4: Comparison Engine
 - [ ] Create comparison view UI
@@ -169,13 +172,14 @@ The project currently has:
 - [ ] Add seller rating display when available
 - [ ] Create "Best Deal" highlighting
 
-### Phase 3: AI Assistant Enhancement (Weeks 5-6)
+### Phase 3: AI Assistant Enhancement (Current - Weeks 5-6)
 **Goal**: Expand AI capabilities for personalized shopping assistance
 
 #### Week 5: AI Model Integration
-- [ ] Upgrade AI assistant with more advanced prompts
-- [ ] Implement product recommendation engine
-- [ ] Create personalized search enhancement
+- [x] Upgrade AI assistant with Google Gemini integration
+- [x] Implement basic product recommendation engine
+- [x] Create search suggestions based on user queries
+- [ ] Enhance personalized search capabilities
 - [ ] Add natural language filter parsing
 - [ ] Implement query reformulation for better results
 - [ ] Add sentiment analysis for product reviews (if available)
@@ -279,10 +283,9 @@ The project currently has:
 | Frontend     | Next.js, React, TypeScript, Tailwind CSS, Shadcn/UI       |
 | Backend      | Supabase (Auth, Database, Storage, Edge Functions)        |
 | Authentication| Supabase Auth with dual-client approach (anon + service role)|
-| AI Assistant | OpenAI API                                                |
-| Data Source  | Custom web scraping with Playwright                       |
-| Search       | Direct platform scraping with caching                     |
-| Anti-Bot     | Stealth techniques for browser automation                 |
+| AI Assistant | Google Gemini API with Genkit                             |
+| Data Source  | Serper.dev API with selective caching                     |
+| Search       | Serper.dev Shopping API with platform filtering           |
 | Database     | Supabase PostgreSQL with Row Level Security               |
 | DevOps       | GitHub Actions, Vercel deployment                         |
 | Analytics    | Google Analytics, Supabase Analytics                      |
@@ -299,14 +302,14 @@ The project currently has:
 | Challenge                                | Mitigation                                                                                |
 | ---------------------------------------- | ----------------------------------------------------------------------------------------- |
 | Search result consistency                | Use standardized data models and normalization for consistent results                     |
-| Web scraping reliability                 | Implement robust error handling, retries, and fallback mechanisms                         |
-| Anti-scraping measures                   | Use stealth techniques, browser fingerprint randomization, and proxy rotation             |
-| Performance concerns                     | Implement caching system to reduce repeated scraping of the same data                     |
-| Platform coverage                        | Focus on key fashion and beauty platforms with dedicated scrapers                         |
-| Cross-platform data normalization        | Create a standardized product model with flexible mappers for each platform               |
-| Scraper maintenance                      | Design modular scrapers that can be easily updated when websites change                   |
+| API rate limiting                        | Implement selective caching to reduce API calls and optimize usage                        |
+| API cost management                      | Cache results for 7 days and implement selective refreshing for specific platforms        |
+| Performance concerns                     | Use efficient caching and implement pagination for large result sets                      |
+| Platform coverage                        | Focus on key Philippine fashion platforms (Lazada, Zalora, Shein)                         |
+| Cross-platform data normalization        | Create a standardized product model with consistent fields across platforms               |
 | Authentication security                  | Use dual-client approach with appropriate permissions for different operations            |
 | Database security                        | Implement Row Level Security (RLS) policies for all tables                                |
-| AI assistant accuracy                    | Continuously train and refine the model with user feedback                                |
+| AI assistant accuracy                    | Use Google Gemini API with well-crafted prompts for better results                        |
 | Mobile performance                       | Optimize bundle size, implement code splitting, and use efficient rendering techniques    |
 | Search result relevance                  | Implement platform-specific filtering and sorting to improve result quality               |
+| Deployment optimization                  | Use Vercel configuration and exclude test files for production deployment                 |
