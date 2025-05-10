@@ -82,12 +82,12 @@ export function SearchSuggestions({
   return (
     <div
       ref={containerRef}
-      className={`absolute z-10 w-full bg-background border rounded-md shadow-md mt-1 overflow-hidden ${className}`}
+      className={`absolute z-10 w-full bg-indigo-950 border border-purple-500/30 rounded-md shadow-md mt-1 overflow-hidden ${className}`}
     >
       {/* Suggestions based on query */}
       {query.trim().length > 0 && suggestions.length > 0 && (
         <div className="p-2">
-          <h3 className="text-xs font-medium text-muted-foreground px-2 py-1">
+          <h3 className="text-xs font-medium text-pink-400 px-2 py-1">
             Suggestions
           </h3>
           <div className="space-y-1">
@@ -95,10 +95,10 @@ export function SearchSuggestions({
               <Button
                 key={`suggestion-${index}`}
                 variant="ghost"
-                className="w-full justify-start text-sm h-8 px-2"
+                className="w-full justify-start text-sm h-8 px-2 text-white hover:bg-purple-800/50 hover:text-pink-300"
                 onClick={() => onSelectSuggestion(suggestion)}
               >
-                <Search className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
+                <Search className="h-3.5 w-3.5 mr-2 text-pink-400" />
                 {suggestion}
               </Button>
             ))}
@@ -108,8 +108,8 @@ export function SearchSuggestions({
 
       {/* Recent searches */}
       {recentSearches.length > 0 && (
-        <div className="p-2 border-t first:border-t-0">
-          <h3 className="text-xs font-medium text-muted-foreground px-2 py-1">
+        <div className="p-2 border-t border-purple-500/30 first:border-t-0">
+          <h3 className="text-xs font-medium text-pink-400 px-2 py-1">
             Recent Searches
           </h3>
           <div className="space-y-1">
@@ -117,10 +117,10 @@ export function SearchSuggestions({
               <Button
                 key={`recent-${index}`}
                 variant="ghost"
-                className="w-full justify-start text-sm h-8 px-2"
+                className="w-full justify-start text-sm h-8 px-2 text-white hover:bg-purple-800/50 hover:text-pink-300"
                 onClick={() => onSelectSuggestion(search)}
               >
-                <Clock className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
+                <Clock className="h-3.5 w-3.5 mr-2 text-pink-400" />
                 {search}
               </Button>
             ))}
@@ -130,8 +130,8 @@ export function SearchSuggestions({
 
       {/* Trending searches */}
       {trendingSearches.length > 0 && (
-        <div className="p-2 border-t">
-          <h3 className="text-xs font-medium text-muted-foreground px-2 py-1">
+        <div className="p-2 border-t border-purple-500/30">
+          <h3 className="text-xs font-medium text-pink-400 px-2 py-1">
             Trending Searches
           </h3>
           <div className="space-y-1">
@@ -139,10 +139,10 @@ export function SearchSuggestions({
               <Button
                 key={`trending-${index}`}
                 variant="ghost"
-                className="w-full justify-start text-sm h-8 px-2"
+                className="w-full justify-start text-sm h-8 px-2 text-white hover:bg-purple-800/50 hover:text-pink-300"
                 onClick={() => onSelectSuggestion(search)}
               >
-                <TrendingUp className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
+                <TrendingUp className="h-3.5 w-3.5 mr-2 text-pink-400" />
                 {search}
               </Button>
             ))}

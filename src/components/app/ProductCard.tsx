@@ -24,6 +24,7 @@ import {
   TrendingUp
 } from 'lucide-react';
 import { useCurrency } from '@/contexts/currency-context';
+import { TrackPriceButton } from './TrackPriceButton';
 
 interface ProductCardProps {
   product: Product & {
@@ -636,7 +637,10 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Product title */}
         <CardTitle className="text-base leading-tight mb-1 line-clamp-2 h-12">
-          <Link href={product.productUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+          <Link
+            href={`/app/product/${product.id}?platform=${product.platform}`}
+            className="hover:text-primary transition-colors"
+          >
             {product.title}
           </Link>
         </CardTitle>
@@ -660,23 +664,38 @@ export function ProductCard({ product }: ProductCardProps) {
           </CardDescription>
         )}
       </CardContent>
-      <CardFooter className="p-4 pt-2 flex justify-between items-center border-t">
-        <div>
-          <p className="text-lg font-semibold text-primary">
-            {formatPrice(product.price)}
-          </p>
-          {product.originalPrice && product.originalPrice > product.price && (
-            <p className="text-xs text-muted-foreground line-through">
-              {formatPrice(product.originalPrice)}
+      <CardFooter className="p-4 pt-2 flex flex-col gap-2 border-t">
+        <div className="flex justify-between items-center w-full">
+          <div>
+            <p className="text-lg font-semibold text-primary">
+              {formatPrice(product.price)}
             </p>
-          )}
+            {product.originalPrice && product.originalPrice > product.price && (
+              <p className="text-xs text-muted-foreground line-through">
+                {formatPrice(product.originalPrice)}
+              </p>
+            )}
+          </div>
+          <div className="flex gap-1">
+            <Button asChild variant="outline" size="sm">
+              <Link href={`/app/product/${product.id}?platform=${product.platform}`}>
+                Details
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="px-2">
+              <Link href={product.productUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
-        <Button asChild variant="outline" size="sm">
-          <Link href={product.productUrl} target="_blank" rel="noopener noreferrer">
-            View Item
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </Link>
-        </Button>
+        <div className="w-full">
+          <TrackPriceButton
+            product={product}
+            variant="secondary"
+            className="w-full text-xs"
+          />
+        </div>
       </CardFooter>
     </Card>
   );

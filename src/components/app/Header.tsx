@@ -6,13 +6,14 @@ import {
   ShoppingBag,
   Search,
   Heart,
-  Bell,
   User,
   LogOut,
   Settings,
   BookmarkIcon,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Bell
 } from 'lucide-react';
+import { NotificationsDropdown } from './NotificationsDropdown';
 import { useAuth } from '@/contexts/auth-context';
 
 import { Button } from '@/components/ui/button';
@@ -40,10 +41,9 @@ export function Header() {
     return email.substring(0, 2).toUpperCase();
   };
 
-  const navigation = [
-    { name: 'Search', href: '/app', icon: Search },
-    { name: 'Wishlist', href: '/app/wishlist', icon: Heart },
-    { name: 'Notifications', href: '/app/notifications', icon: Bell },
+  // Navigation items
+  const navigation: { name: string; href: string; icon: any }[] = [
+    { name: 'Price Alerts', href: '/app/price-alerts', icon: Bell }
   ];
 
   // Add a test link for developers
@@ -60,12 +60,12 @@ export function Header() {
         ]}
       />
 
-      <header className="border-b bg-card">
+      <header className="border-b border-purple-800/30 bg-indigo-950/80 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <div className="flex items-center gap-8">
-            <a href="/app" className="flex items-center gap-2 text-xl font-semibold">
-              <ShoppingBag className="h-7 w-7 text-primary" />
-              <span>ShopSavvy</span>
+            <a href="/app" className="flex items-center gap-2 text-xl font-semibold group">
+              <ShoppingBag className="h-7 w-7 text-pink-400 group-hover:text-pink-300 transition-colors" />
+              <span className="text-white">ShopSavvy</span>
             </a>
             <nav id="main-navigation" className="hidden md:flex items-center gap-6">
               {navigation.map((item) => {
@@ -75,42 +75,29 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`flex items-center gap-2 text-sm font-medium ${
+                    className={`flex items-center gap-2 text-sm font-medium transition-all ${
                       isActive
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground'
+                        ? 'text-pink-400'
+                        : 'text-purple-200 hover:text-pink-300'
                     }`}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className={`h-4 w-4 ${isActive ? 'text-pink-400' : 'text-purple-300'}`} />
                     {item.name}
                   </Link>
                 );
               })}
-              <Link
-                href="/app/saved-filters"
-                className={`flex items-center gap-2 text-sm font-medium ${
-                  pathname === "/app/saved-filters"
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                <BookmarkIcon className="h-4 w-4" />
-                Saved Filters
-              </Link>
+
             </nav>
           </div>
         <div className="flex items-center gap-2">
           {/* Currency Selector */}
           <CurrencySelector />
 
-          {/* Theme Toggle */}
-          <ThemeToggle />
-
           {/* Accessibility Settings */}
           <AccessibilitySettings />
 
-          {/* Keyboard Shortcuts */}
-          <KeyboardShortcuts />
+          {/* Notifications Dropdown */}
+          {user && <NotificationsDropdown />}
 
           {/* Analytics Dashboard */}
           {user && <AnalyticsDashboard />}
@@ -118,48 +105,32 @@ export function Header() {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                  <Avatar>
-                    <AvatarFallback>{getInitials(user.email || '')}</AvatarFallback>
+                <Button variant="ghost" size="icon" className="rounded-full border border-pink-500/30 bg-indigo-950/50 hover:bg-indigo-900/80">
+                  <Avatar className="ring-2 ring-pink-500/50">
+                    <AvatarFallback className="bg-gradient-to-br from-pink-500 to-purple-600 text-white font-bold">
+                      {getInitials(user.email || '')}
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
+              <DropdownMenuContent align="end" className="bg-indigo-950 border border-pink-500/30 shadow-lg shadow-pink-500/10">
+                <DropdownMenuLabel className="text-pink-400">My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator className="bg-purple-800/50" />
                 <DropdownMenuItem asChild>
-                  <Link href="/app/profile" className="flex items-center gap-2 cursor-pointer">
-                    <User className="h-4 w-4" />
+                  <Link href="/app/profile" className="flex items-center gap-2 cursor-pointer text-purple-200 hover:text-pink-300 focus:text-pink-300 focus:bg-indigo-900">
+                    <User className="h-4 w-4 text-pink-400" />
                     Profile
                   </Link>
                 </DropdownMenuItem>
+
                 <DropdownMenuItem asChild>
-                  <Link href="/app/wishlist" className="flex items-center gap-2 cursor-pointer md:hidden">
-                    <Heart className="h-4 w-4" />
-                    Wishlist
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/app/notifications" className="flex items-center gap-2 cursor-pointer md:hidden">
-                    <Bell className="h-4 w-4" />
-                    Notifications
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/app/saved-filters" className="flex items-center gap-2 cursor-pointer">
-                    <BookmarkIcon className="h-4 w-4" />
-                    Saved Filters
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/app/settings" className="flex items-center gap-2 cursor-pointer">
-                    <Settings className="h-4 w-4" />
+                  <Link href="/app/settings" className="flex items-center gap-2 cursor-pointer text-purple-200 hover:text-pink-300 focus:text-pink-300 focus:bg-indigo-900">
+                    <Settings className="h-4 w-4 text-pink-400" />
                     Settings
                   </Link>
                 </DropdownMenuItem>
-                {/* Test pages removed as requested */}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => signOut()} className="flex items-center gap-2 cursor-pointer text-destructive">
+                <DropdownMenuSeparator className="bg-purple-800/50" />
+                <DropdownMenuItem onClick={() => signOut()} className="flex items-center gap-2 cursor-pointer text-red-400 hover:text-red-300 focus:text-red-300 focus:bg-indigo-900">
                   <LogOut className="h-4 w-4" />
                   Sign out
                 </DropdownMenuItem>
@@ -168,12 +139,12 @@ export function Header() {
           ) : (
             <div className="flex items-center gap-4">
               <Link href="/login">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-pink-500/50 text-purple-200 hover:bg-pink-500/10 hover:text-pink-300">
                   Log in
                 </Button>
               </Link>
               <Link href="/register">
-                <Button size="sm">
+                <Button size="sm" className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-medium">
                   Sign up
                 </Button>
               </Link>

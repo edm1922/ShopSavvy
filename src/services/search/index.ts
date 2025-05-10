@@ -18,7 +18,7 @@ import * as CustomSearch from './custom-universal-search';
 export async function searchProducts(
   query: string,
   filters?: SearchFilters,
-  platforms = ['lazada', 'zalora', 'shein'], // Focusing on fashion and beauty
+  platforms = ['lazada', 'zalora', 'shein', 'shopee'], // Focusing on fashion and beauty
   maxPages = 5,
   skipCache = false
 ): Promise<Product[]> {

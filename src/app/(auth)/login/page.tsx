@@ -53,24 +53,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-background">
-      <div className="w-full max-w-md space-y-8">
-        <div className="text-center">
-          <Link href="/" className="inline-flex items-center gap-2 text-2xl font-bold">
-            <ShoppingBag className="h-8 w-8 text-primary" />
-            <span>ShopSavvy</span>
-          </Link>
-          <h2 className="mt-6 text-3xl font-bold tracking-tight">Sign in to your account</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Or{' '}
-            <Link href="/register" className="font-medium text-primary hover:text-primary/90">
-              create a new account
-            </Link>
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-r from-indigo-950 to-purple-950 text-white">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-[400px] -left-[300px] w-[600px] h-[600px] rounded-full bg-purple-700/20 blur-[100px]"></div>
+        <div className="absolute top-[100px] -right-[300px] w-[600px] h-[600px] rounded-full bg-blue-700/20 blur-[100px]"></div>
+        <div className="absolute -bottom-[400px] left-[30%] w-[800px] h-[800px] rounded-full bg-pink-700/20 blur-[100px]"></div>
+      </div>
 
-        <div className="mt-8">
-          <div className="bg-card p-8 shadow-sm rounded-lg border">
+      <div className="relative z-10 flex items-center justify-center min-h-screen py-12 px-4">
+        <div className="w-full max-w-md space-y-8">
+          <div className="text-center">
+            <Link href="/" className="inline-flex items-center gap-2 text-2xl font-bold">
+              <ShoppingBag className="h-8 w-8 text-pink-400" />
+              <span className="text-white">ShopSavvy</span>
+            </Link>
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-white">Sign in to your account</h2>
+            <p className="mt-2 text-sm text-purple-200">
+              Or{' '}
+              <Link href="/register" className="font-medium text-pink-400 hover:text-pink-300">
+                create a new account
+              </Link>
+            </p>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-md p-8 shadow-lg rounded-lg border border-white/20">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                 <FormField
@@ -78,11 +84,15 @@ export default function LoginPage() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email address</FormLabel>
+                      <FormLabel className="text-white">Email address</FormLabel>
                       <FormControl>
-                        <Input placeholder="you@example.com" {...field} />
+                        <Input
+                          placeholder="you@example.com"
+                          {...field}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-pink-500 focus:ring-pink-500"
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-pink-300" />
                     </FormItem>
                   )}
                 />
@@ -92,24 +102,33 @@ export default function LoginPage() {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Password</FormLabel>
+                      <FormLabel className="text-white">Password</FormLabel>
                       <FormControl>
-                        <Input type="password" placeholder="••••••••" {...field} />
+                        <Input
+                          type="password"
+                          placeholder="••••••••"
+                          {...field}
+                          className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-pink-500 focus:ring-pink-500"
+                        />
                       </FormControl>
-                      <FormMessage />
+                      <FormMessage className="text-pink-300" />
                     </FormItem>
                   )}
                 />
 
                 <div className="flex items-center justify-end">
                   <div className="text-sm">
-                    <Link href="/forgot-password" className="font-medium text-primary hover:text-primary/90">
+                    <Link href="/forgot-password" className="font-medium text-pink-400 hover:text-pink-300">
                       Forgot your password?
                     </Link>
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full" disabled={isLoading}>
+                <Button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0"
+                  disabled={isLoading}
+                >
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -125,15 +144,19 @@ export default function LoginPage() {
             <div className="mt-6">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <Separator />
+                  <Separator className="bg-white/20" />
                 </div>
                 <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+                  <span className="bg-transparent px-2 text-white/60">Or continue with</span>
                 </div>
               </div>
 
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <Button variant="outline" className="w-full" onClick={() => alert('Google login not implemented yet')}>
+                <Button
+                  variant="outline"
+                  className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  onClick={() => alert('Google login not implemented yet')}
+                >
                   <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
                     <path
                       d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -155,7 +178,11 @@ export default function LoginPage() {
                   </svg>
                   Google
                 </Button>
-                <Button variant="outline" className="w-full" onClick={() => alert('Facebook login not implemented yet')}>
+                <Button
+                  variant="outline"
+                  className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  onClick={() => alert('Facebook login not implemented yet')}
+                >
                   <svg className="mr-2 h-4 w-4" fill="#1877F2" viewBox="0 0 24 24">
                     <path
                       d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"

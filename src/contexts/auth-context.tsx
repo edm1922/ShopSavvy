@@ -167,6 +167,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       console.log('Auth context: Signing out');
       console.log('Using regular client for authentication to ensure session persistence');
 
+      // Set a flag to indicate we're in the process of signing out
+      // This prevents the app layout from redirecting to login
+      sessionStorage.setItem('signing_out', 'true');
+
       const { error } = await supabase.auth.signOut();
 
       if (error) {
@@ -179,6 +183,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         title: 'Signed out',
         description: 'You have been successfully signed out.',
       });
+
+      // Redirect to landing page after sign out
+      window.location.href = '/';
     } catch (error: any) {
       console.error('Sign out exception:', error);
       toast({

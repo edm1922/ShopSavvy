@@ -69,3 +69,45 @@ export interface SearchFilters {
   category?: string;
   sortBy?: 'price_asc' | 'price_desc' | 'rating' | 'relevance';
 }
+
+/**
+ * Price history data point interface
+ */
+export interface PriceHistoryPoint {
+  price: number;
+  date: string; // ISO date string
+  platform: string;
+}
+
+/**
+ * Price history interface
+ */
+export interface PriceHistory {
+  productId: string;
+  productName: string;
+  currentPrice: number;
+  lowestPrice: number;
+  highestPrice: number;
+  pricePoints: PriceHistoryPoint[];
+  averagePrice: number;
+  priceChange: number; // Percentage change
+  priceChangeDirection: 'up' | 'down' | 'stable';
+}
+
+/**
+ * Price alert interface
+ */
+export interface PriceAlert {
+  id: string;
+  productId: string;
+  productName: string;
+  productUrl: string;
+  imageUrl?: string;
+  currentPrice: number;
+  targetPrice: number;
+  platform: string;
+  isActive: boolean;
+  isTriggered: boolean;
+  createdAt: string;
+  updatedAt: string;
+}

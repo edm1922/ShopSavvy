@@ -125,7 +125,7 @@ export function PriceRangeSlider({
 
       <div className="flex items-center gap-2">
         <div className="flex-1 relative">
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-400">
             {currencySymbol}
           </div>
           <Input
@@ -137,12 +137,12 @@ export function PriceRangeSlider({
             min={minPrice}
             max={maxPrice}
             placeholder="Min"
-            className="w-full pl-8"
+            className="w-full pl-8 bg-white/10 border-purple-500/30 text-white placeholder:text-purple-300/50 focus:border-pink-400 focus:ring-pink-400/20"
           />
         </div>
-        <span className="text-muted-foreground">to</span>
+        <span className="text-pink-400">to</span>
         <div className="flex-1 relative">
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-400">
             {currencySymbol}
           </div>
           <Input
@@ -154,7 +154,7 @@ export function PriceRangeSlider({
             min={minPrice}
             max={maxPrice}
             placeholder="Max"
-            className="w-full pl-8"
+            className="w-full pl-8 bg-white/10 border-purple-500/30 text-white placeholder:text-purple-300/50 focus:border-pink-400 focus:ring-pink-400/20"
           />
         </div>
       </div>

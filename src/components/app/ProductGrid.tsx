@@ -28,7 +28,7 @@ export const ProductGrid = memo(function ProductGrid({
 
   // Show empty state when no products
   if (products.length === 0) {
-    return <p className="text-center text-muted-foreground py-8">No products found. Try a different search or adjust your filters!</p>;
+    return <div></div>; // Empty div, no message
   }
 
   // Show products

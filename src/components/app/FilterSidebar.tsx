@@ -161,13 +161,13 @@ export function FilterSidebar({
     (currentFilters.category ? 1 : 0);
 
   return (
-    <div className={`bg-card rounded-lg shadow-sm border p-4 ${className}`}>
+    <div className={`bg-indigo-950/50 rounded-lg shadow-md border border-purple-500/30 p-4 backdrop-blur-sm ${className}`}>
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <Filter className="h-5 w-5" />
-          <h3 className="font-medium">Filters</h3>
+          <Filter className="h-5 w-5 text-pink-400" />
+          <h3 className="font-medium text-white">Filters</h3>
           {activeFilterCount > 0 && (
-            <Badge variant="secondary" className="ml-2">
+            <Badge className="ml-2 bg-pink-500 text-white hover:bg-pink-600">
               {activeFilterCount}
             </Badge>
           )}
@@ -177,7 +177,7 @@ export function FilterSidebar({
             variant="ghost"
             size="sm"
             onClick={clearAllFilters}
-            className="text-xs text-muted-foreground hover:text-foreground"
+            className="text-xs text-purple-300 hover:text-pink-300 hover:bg-purple-800/50"
           >
             Clear all
           </Button>
@@ -187,7 +187,7 @@ export function FilterSidebar({
       <Accordion type="multiple" defaultValue={['price', 'platform']}>
         {/* Price Range Filter */}
         <AccordionItem value="price">
-          <AccordionTrigger className="py-2">Price Range</AccordionTrigger>
+          <AccordionTrigger className="py-2 text-pink-400 hover:text-pink-300">Price Range</AccordionTrigger>
           <AccordionContent>
             <PriceRangeSlider
               minPrice={0}
@@ -202,7 +202,7 @@ export function FilterSidebar({
         {/* Platform Filter */}
         {platforms.length > 0 && (
           <AccordionItem value="platform">
-            <AccordionTrigger className="py-2">Platform</AccordionTrigger>
+            <AccordionTrigger className="py-2 text-pink-400 hover:text-pink-300">Platform</AccordionTrigger>
             <AccordionContent>
               <div className="space-y-2">
                 {platforms.map(platform => (
@@ -214,7 +214,7 @@ export function FilterSidebar({
                     />
                     <label
                       htmlFor={`platform-${platform}`}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-white"
                     >
                       {platform}
                     </label>
@@ -228,7 +228,7 @@ export function FilterSidebar({
         {/* Brand Filter */}
         {brands.length > 0 && (
           <AccordionItem value="brand">
-            <AccordionTrigger className="py-2">Brand</AccordionTrigger>
+            <AccordionTrigger className="py-2 text-pink-400 hover:text-pink-300">Brand</AccordionTrigger>
             <AccordionContent>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {brands.map(brand => (
@@ -240,7 +240,7 @@ export function FilterSidebar({
                     />
                     <label
                       htmlFor={`brand-${brand}`}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-white"
                     >
                       {brand}
                     </label>
@@ -254,7 +254,7 @@ export function FilterSidebar({
         {/* Category Filter */}
         {categories.length > 0 && (
           <AccordionItem value="category">
-            <AccordionTrigger className="py-2">Category</AccordionTrigger>
+            <AccordionTrigger className="py-2 text-pink-400 hover:text-pink-300">Category</AccordionTrigger>
             <AccordionContent>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {categories.map(category => (
@@ -266,7 +266,7 @@ export function FilterSidebar({
                     />
                     <label
                       htmlFor={`category-${category}`}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer text-white"
                     >
                       {category}
                     </label>

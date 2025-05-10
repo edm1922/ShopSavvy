@@ -1201,15 +1201,15 @@ export default function AIShoppingAssistant({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <div className="bg-indigo-950/50 rounded-lg shadow-md border border-purple-500/30 p-4 backdrop-blur-sm">
       <div className="flex items-center gap-2 mb-4">
-        <Sparkles className="h-5 w-5 text-primary" />
-        <h2 className="text-lg font-semibold">AI Shopping Assistant</h2>
+        <Sparkles className="h-5 w-5 text-pink-400" />
+        <h2 className="text-lg font-semibold text-white">AI Shopping Assistant</h2>
       </div>
 
       {!currentQuery ? (
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-purple-200">
             Enter a search query to get AI-powered suggestions and insights.
           </p>
 
@@ -1217,15 +1217,15 @@ export default function AIShoppingAssistant({
           {trendingSearches.length > 0 && (
             <div>
               <div className="flex items-center gap-1 mb-2">
-                <TrendingUp className="h-4 w-4 text-muted-foreground" />
-                <h3 className="text-sm font-medium">Trending Searches</h3>
+                <TrendingUp className="h-4 w-4 text-pink-400" />
+                <h3 className="text-sm font-medium text-pink-400">Trending Searches</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {trendingSearches.map((search, index) => (
                   <Badge
                     key={index}
                     variant="outline"
-                    className="cursor-pointer hover:bg-secondary"
+                    className="cursor-pointer hover:bg-purple-800/50 border-purple-500/30 text-white hover:text-pink-300 bg-indigo-900/70"
                     onClick={() => handleSuggestedSearch(search)}
                   >
                     {search}
@@ -1239,15 +1239,14 @@ export default function AIShoppingAssistant({
           {recentSearches.length > 0 && (
             <div>
               <div className="flex items-center gap-1 mb-2">
-                <Clock className="h-4 w-4 text-muted-foreground" />
-                <h3 className="text-sm font-medium">Recent Searches</h3>
+                <Clock className="h-4 w-4 text-pink-400" />
+                <h3 className="text-sm font-medium text-pink-400">Recent Searches</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {recentSearches.slice(0, 5).map((search, index) => (
                   <Badge
                     key={index}
-                    variant="secondary"
-                    className="cursor-pointer"
+                    className="cursor-pointer bg-pink-500/40 hover:bg-pink-500/50 text-white hover:text-white"
                     onClick={() => handleSuggestedSearch(search)}
                   >
                     {search}
@@ -1259,16 +1258,16 @@ export default function AIShoppingAssistant({
         </div>
       ) : (
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="suggestions" className="text-xs">
+          <TabsList className="grid w-full grid-cols-3 bg-indigo-900/50 border border-purple-500/30">
+            <TabsTrigger value="suggestions" className="text-xs data-[state=active]:bg-pink-500 data-[state=active]:text-white data-[state=inactive]:text-purple-200 data-[state=inactive]:hover:text-pink-300">
               <Search className="h-3.5 w-3.5 mr-1" />
               Suggestions
             </TabsTrigger>
-            <TabsTrigger value="insights" className="text-xs">
+            <TabsTrigger value="insights" className="text-xs data-[state=active]:bg-pink-500 data-[state=active]:text-white data-[state=inactive]:text-purple-200 data-[state=inactive]:hover:text-pink-300">
               <Sparkles className="h-3.5 w-3.5 mr-1" />
               Insights
             </TabsTrigger>
-            <TabsTrigger value="chat" className="text-xs">
+            <TabsTrigger value="chat" className="text-xs data-[state=active]:bg-pink-500 data-[state=active]:text-white data-[state=inactive]:text-purple-200 data-[state=inactive]:hover:text-pink-300">
               <MessageSquare className="h-3.5 w-3.5 mr-1" />
               Chat
             </TabsTrigger>
@@ -1278,7 +1277,7 @@ export default function AIShoppingAssistant({
           <TabsContent value="suggestions" className="space-y-4 mt-2">
             {suggestedSearches.length > 0 && (
               <div>
-                <h3 className="text-sm font-medium mb-2">Suggested Searches:</h3>
+                <h3 className="text-sm font-medium mb-2 text-pink-400 bg-indigo-900/50 p-2 rounded-md">Suggested Searches:</h3>
                 <div className="flex flex-wrap gap-2">
                   {suggestedSearches.map((search, index) => (
                     <div key={index} className="flex flex-col items-center">
@@ -1286,23 +1285,23 @@ export default function AIShoppingAssistant({
                         variant="outline"
                         size="sm"
                         onClick={() => handleSuggestedSearch(search)}
-                        className="h-auto py-1 px-3 text-xs rounded-full"
+                        className="h-auto py-1 px-3 text-xs rounded-full border-purple-500/30 text-white hover:bg-purple-800/50 hover:text-pink-300 bg-indigo-900/70"
                       >
                         {search}
                       </Button>
 
                       {/* Feedback buttons */}
-                      <div className="flex mt-1">
+                      <div className="flex mt-1 bg-indigo-900/50 rounded-full px-1">
                         <button
                           onClick={() => handleFeedback(search, 'up')}
-                          className={`p-1 rounded-full ${feedbackGiven[search] === 'up' ? 'text-green-500' : 'text-gray-400 hover:text-gray-600'}`}
+                          className={`p-1 rounded-full ${feedbackGiven[search] === 'up' ? 'text-green-400' : 'text-pink-400 hover:text-pink-300'}`}
                           aria-label="Helpful suggestion"
                         >
                           <ThumbsUp className="h-3 w-3" />
                         </button>
                         <button
                           onClick={() => handleFeedback(search, 'down')}
-                          className={`p-1 rounded-full ${feedbackGiven[search] === 'down' ? 'text-red-500' : 'text-gray-400 hover:text-gray-600'}`}
+                          className={`p-1 rounded-full ${feedbackGiven[search] === 'down' ? 'text-red-400' : 'text-pink-400 hover:text-pink-300'}`}
                           aria-label="Not helpful suggestion"
                         >
                           <ThumbsDown className="h-3 w-3" />
@@ -1316,17 +1315,17 @@ export default function AIShoppingAssistant({
 
             {Object.keys(suggestedFilters).length > 0 && (
               <div>
-                <h3 className="text-sm font-medium mb-2">Suggested Filters:</h3>
+                <h3 className="text-sm font-medium mb-2 text-pink-400">Suggested Filters:</h3>
                 <div className="space-y-2">
                   {suggestedFilters.category && (
                     <div className="flex items-center">
-                      <Tag className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
-                      <span className="text-xs font-medium">Category:</span>
+                      <Tag className="h-3.5 w-3.5 mr-2 text-pink-400" />
+                      <span className="text-xs font-medium text-white">Category:</span>
                       <Button
                         variant="link"
                         size="sm"
                         onClick={() => applyFilter('category', suggestedFilters.category)}
-                        className="h-auto p-0 ml-1 text-xs"
+                        className="h-auto p-0 ml-1 text-xs text-pink-300 hover:text-pink-200"
                       >
                         {suggestedFilters.category}
                       </Button>
@@ -1334,13 +1333,13 @@ export default function AIShoppingAssistant({
                   )}
                   {suggestedFilters.price && (
                     <div className="flex items-center">
-                      <Tag className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
-                      <span className="text-xs font-medium">Price:</span>
+                      <Tag className="h-3.5 w-3.5 mr-2 text-pink-400" />
+                      <span className="text-xs font-medium text-white">Price:</span>
                       <Button
                         variant="link"
                         size="sm"
                         onClick={() => applyFilter('price', suggestedFilters.price)}
-                        className="h-auto p-0 ml-1 text-xs"
+                        className="h-auto p-0 ml-1 text-xs text-pink-300 hover:text-pink-200"
                       >
                         {suggestedFilters.price}
                       </Button>
@@ -1348,13 +1347,13 @@ export default function AIShoppingAssistant({
                   )}
                   {suggestedFilters.brand && (
                     <div className="flex items-center">
-                      <Tag className="h-3.5 w-3.5 mr-2 text-muted-foreground" />
-                      <span className="text-xs font-medium">Brand:</span>
+                      <Tag className="h-3.5 w-3.5 mr-2 text-pink-400" />
+                      <span className="text-xs font-medium text-white">Brand:</span>
                       <Button
                         variant="link"
                         size="sm"
                         onClick={() => applyFilter('brand', suggestedFilters.brand)}
-                        className="h-auto p-0 ml-1 text-xs"
+                        className="h-auto p-0 ml-1 text-xs text-pink-300 hover:text-pink-200"
                       >
                         {suggestedFilters.brand}
                       </Button>
@@ -1366,7 +1365,7 @@ export default function AIShoppingAssistant({
 
             {/* Reset filters button */}
             {originalProducts.length > 0 && products.length !== originalProducts.length && (
-              <div className="pt-2 border-t">
+              <div className="pt-2 border-t border-purple-500/30">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -1380,9 +1379,9 @@ export default function AIShoppingAssistant({
                     url.search = query ? `?q=${query}` : '';
                     window.history.pushState({}, '', url);
                   }}
-                  className="h-8 text-xs w-full justify-start"
+                  className="h-8 text-xs w-full justify-start text-purple-200 hover:text-pink-300 hover:bg-purple-800/50"
                 >
-                  <RefreshCw className="h-3.5 w-3.5 mr-2" />
+                  <RefreshCw className="h-3.5 w-3.5 mr-2 text-pink-400" />
                   Reset All Filters
                 </Button>
               </div>
@@ -1393,19 +1392,19 @@ export default function AIShoppingAssistant({
           <TabsContent value="insights" className="space-y-4 mt-2">
             {isAnalyzing ? (
               <div className="flex flex-col items-center justify-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mb-2"></div>
-                <p className="text-sm text-muted-foreground">Analyzing products...</p>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-400 mb-2"></div>
+                <p className="text-sm text-purple-200">Analyzing products...</p>
               </div>
             ) : productInsights.length > 0 ? (
               <div className="space-y-3">
                 {productInsights.map((insight, index) => (
-                  <div key={index} className="bg-muted/50 rounded-lg p-3">
-                    <p className="text-sm">{insight}</p>
+                  <div key={index} className="bg-purple-800/20 border border-purple-500/30 rounded-lg p-3">
+                    <p className="text-sm text-white">{insight}</p>
                   </div>
                 ))}
               </div>
             ) : (
-              <p className="text-sm text-muted-foreground py-4 text-center">
+              <p className="text-sm text-purple-200 py-4 text-center">
                 No insights available. Try searching for products first.
               </p>
             )}
@@ -1424,8 +1423,8 @@ export default function AIShoppingAssistant({
                       <div
                         className={`max-w-[85%] rounded-lg px-3 py-2 text-sm ${
                           message.role === 'user'
-                            ? 'bg-primary text-primary-foreground'
-                            : 'bg-muted'
+                            ? 'bg-pink-500 text-white'
+                            : 'bg-purple-800/20 border border-purple-500/30 text-white'
                         }`}
                       >
                         {message.content}
@@ -1434,7 +1433,7 @@ export default function AIShoppingAssistant({
                   ))
                 ) : (
                   <div className="flex items-center justify-center h-full">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-purple-200">
                       Ask me anything about these products!
                     </p>
                   </div>
@@ -1447,9 +1446,9 @@ export default function AIShoppingAssistant({
                   placeholder="Ask about these products..."
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
-                  className="flex-1 text-sm"
+                  className="flex-1 text-sm bg-white/10 border-purple-500/30 text-white placeholder:text-purple-300/50 focus:border-pink-400 focus:ring-pink-400/20"
                 />
-                <Button type="submit" size="sm" className="shrink-0">
+                <Button type="submit" size="sm" className="shrink-0 bg-pink-500 hover:bg-pink-600 text-white">
                   <MessageSquare className="h-4 w-4" />
                 </Button>
               </form>

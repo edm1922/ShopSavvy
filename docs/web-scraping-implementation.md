@@ -1,7 +1,7 @@
 # Web Scraping Implementation Plan for ShopSavvy
 
 ## Overview
-This document outlines the implementation plan for the web scraping approach to gather product data from e-commerce platforms like Shopee and Lazada without relying on official APIs.
+This document outlines the implementation plan for the web scraping approach to gather product data from e-commerce platforms like Kily Philippines and Lazada without relying on official APIs.
 
 ## Architecture
 
@@ -22,9 +22,9 @@ export interface ScraperInterface {
 Each e-commerce platform will have its own scraper implementation:
 
 ```typescript
-// src/services/scrapers/shopee-scraper.ts
-export class ShopeeScraper implements ScraperInterface {
-  // Implementation for Shopee
+// src/services/scrapers/kily-scraper.ts
+export class KilyScraper implements ScraperInterface {
+  // Implementation for Kily Philippines
 }
 
 // src/services/scrapers/lazada-scraper.ts
@@ -40,8 +40,8 @@ A factory pattern to get the appropriate scraper:
 // src/services/scrapers/scraper-factory.ts
 export function getScraperForPlatform(platform: string): ScraperInterface {
   switch (platform.toLowerCase()) {
-    case 'shopee':
-      return new ShopeeScraper();
+    case 'kily philippines':
+      return new KilyScraper();
     case 'lazada':
       return new LazadaScraper();
     // Add more platforms as needed
@@ -90,7 +90,7 @@ import * as cheerio from 'cheerio';
 function parseProductList(html: string): Product[] {
   const $ = cheerio.load(html);
   const products: Product[] = [];
-  
+
   $('.product-item').each((_, element) => {
     // Extract product data
     const product: Product = {
@@ -101,7 +101,7 @@ function parseProductList(html: string): Product[] {
     };
     products.push(product);
   });
-  
+
   return products;
 }
 ```
@@ -115,28 +115,28 @@ import puppeteer from 'puppeteer';
 
 export class BrowserClient {
   private browser: puppeteer.Browser | null = null;
-  
+
   async initialize() {
     this.browser = await puppeteer.launch({
       headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
   }
-  
+
   async getPageContent(url: string): Promise<string> {
     if (!this.browser) await this.initialize();
     const page = await this.browser!.newPage();
-    
+
     // Set user agent
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
-    
+
     await page.goto(url, { waitUntil: 'networkidle2' });
     const content = await page.content();
     await page.close();
-    
+
     return content;
   }
-  
+
   async close() {
     if (this.browser) await this.browser.close();
     this.browser = null;
@@ -152,31 +152,31 @@ To reduce the number of requests and improve performance:
 export class CacheService {
   private cache: Map<string, { data: any, timestamp: number }> = new Map();
   private readonly TTL: number; // Time to live in milliseconds
-  
+
   constructor(ttlSeconds: number = 3600) {
     this.TTL = ttlSeconds * 1000;
   }
-  
+
   get(key: string): any | null {
     const item = this.cache.get(key);
     if (!item) return null;
-    
+
     if (Date.now() - item.timestamp > this.TTL) {
       this.cache.delete(key);
       return null;
     }
-    
+
     return item.data;
   }
-  
+
   set(key: string, data: any): void {
     this.cache.set(key, { data, timestamp: Date.now() });
   }
-  
+
   invalidate(key: string): void {
     this.cache.delete(key);
   }
-  
+
   invalidateAll(): void {
     this.cache.clear();
   }
@@ -191,23 +191,23 @@ To be respectful of the target websites:
 export class RateLimiter {
   private readonly requestsPerMinute: number;
   private requestTimestamps: number[] = [];
-  
+
   constructor(requestsPerMinute: number = 20) {
     this.requestsPerMinute = requestsPerMinute;
   }
-  
+
   async waitForSlot(): Promise<void> {
     const now = Date.now();
     this.requestTimestamps = this.requestTimestamps.filter(
       timestamp => now - timestamp < 60000
     );
-    
+
     if (this.requestTimestamps.length >= this.requestsPerMinute) {
       const oldestRequest = this.requestTimestamps[0];
       const waitTime = 60000 - (now - oldestRequest);
       await new Promise(resolve => setTimeout(resolve, waitTime));
     }
-    
+
     this.requestTimestamps.push(Date.now());
   }
 }
@@ -233,7 +233,7 @@ export class ScraperError extends Error {
 
 export function handleScraperError(error: any, platform: string, url?: string): never {
   if (error instanceof ScraperError) throw error;
-  
+
   if (error.response) {
     throw new ScraperError(
       `HTTP error: ${error.response.status}`,
@@ -243,7 +243,7 @@ export function handleScraperError(error: any, platform: string, url?: string): 
       error
     );
   }
-  
+
   throw new ScraperError(
     error.message || 'Unknown scraper error',
     platform,
@@ -263,7 +263,7 @@ export function handleScraperError(error: any, platform: string, url?: string): 
    - Set up error handling
 
 2. **Week 1-2: Platform-Specific Scrapers**
-   - Implement Shopee scraper
+   - Implement Kily Philippines scraper
    - Implement Lazada scraper
    - Create unified interface
 

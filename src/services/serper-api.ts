@@ -181,7 +181,7 @@ export async function searchProducts(
   let cachedProducts = [];
 
   // Define the major platforms we support
-  const majorPlatforms = ['lazada', 'zalora', 'shein'];
+  const majorPlatforms = ['lazada', 'zalora', 'shein', 'shopee'];
 
   // Check if specific platforms were requested
   if (requestedPlatforms.length > 0) {

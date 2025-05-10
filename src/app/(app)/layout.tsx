@@ -19,9 +19,16 @@ export default function AppLayout({
     // If not loading and no user, redirect to login
     if (!isLoading && !user && pathname !== '/login' && pathname !== '/register') {
       console.log('No authenticated user found, redirecting to login');
-      router.push('/login');
+
+      // Don't redirect if we're in the process of signing out (which will handle its own redirection)
+      const isSigningOut = sessionStorage.getItem('signing_out') === 'true';
+      if (!isSigningOut) {
+        router.push('/login');
+      }
     } else if (!isLoading && user) {
       console.log('Authenticated user found:', user.email);
+      // Clear any signing out flag
+      sessionStorage.removeItem('signing_out');
     }
   }, [user, isLoading, router, pathname]);
 
@@ -33,7 +40,9 @@ export default function AppLayout({
         const { data, error } = await supabase.auth.getSession();
         if (error) {
           console.error('Error refreshing session:', error);
-          if (!user && pathname !== '/login' && pathname !== '/register') {
+          // Don't redirect if we're in the process of signing out
+          const isSigningOut = sessionStorage.getItem('signing_out') === 'true';
+          if (!user && pathname !== '/login' && pathname !== '/register' && !isSigningOut) {
             router.push('/login');
           }
         } else if (data.session) {
@@ -66,14 +75,24 @@ export default function AppLayout({
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      <Header />
-      <main className="container mx-auto px-4 py-8">
-        {children}
-      </main>
-      <footer className="mt-auto border-t py-6 text-center text-sm text-muted-foreground">
-        <p>&copy; {new Date().getFullYear()} ShopSavvy. All rights reserved.</p>
-      </footer>
+    <div className="flex flex-col min-h-screen bg-gradient-to-r from-indigo-950 to-purple-950 text-white">
+      {/* Abstract gradient shapes */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-[400px] -left-[300px] w-[600px] h-[600px] rounded-full bg-purple-700/20 blur-[100px]"></div>
+        <div className="absolute top-[100px] -right-[300px] w-[600px] h-[600px] rounded-full bg-blue-700/20 blur-[100px]"></div>
+        <div className="absolute -bottom-[400px] left-[30%] w-[800px] h-[800px] rounded-full bg-pink-700/20 blur-[100px]"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Header />
+        <main className="container mx-auto px-4 py-8">
+          {children}
+        </main>
+        <footer className="mt-auto border-t border-purple-800/30 py-6 text-center text-sm text-purple-200">
+          <p>&copy; {new Date().getFullYear()} ShopSavvy. All rights reserved.</p>
+        </footer>
+      </div>
     </div>
   );
 }

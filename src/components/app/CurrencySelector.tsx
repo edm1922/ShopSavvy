@@ -31,17 +31,17 @@ export function CurrencySelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="w-9 px-0">
+        <Button variant="ghost" size="icon" className="w-9 px-0 bg-transparent border-0 hover:bg-purple-800/50">
           <span className="sr-only">Change currency</span>
-          <span className="text-sm font-medium">{currencySymbol}</span>
+          <span className="text-sm font-medium text-pink-400">{currencySymbol}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="bg-indigo-950 border border-purple-500/30 text-white">
         {currencyOptions.map((option) => (
           <DropdownMenuItem
             key={option.code}
             onClick={() => setCurrency(option.code)}
-            className={currency === option.code ? 'bg-accent' : ''}
+            className={currency === option.code ? 'bg-pink-500/20 text-pink-300' : 'hover:bg-purple-800/50 hover:text-pink-300'}
           >
             <span className="mr-2">{currencySymbols[option.code]}</span>
             {option.label}

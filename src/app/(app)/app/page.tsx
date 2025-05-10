@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ProductGrid } from '@/components/app/ProductGrid';
 import { VirtualizedProductGrid } from '@/components/app/VirtualizedProductGrid';
+import { PhoneMockup } from '@/components/landing/PhoneMockup';
 
 // Now using the fixed shopping-apis that handles browser environment properly
 import { searchProducts } from '@/services/shopping-apis';
@@ -528,7 +529,7 @@ export default function AppPage() {
                 placeholder="Enter search terms and click Search button..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pr-10"
+                className="pr-10 bg-white/10 border-purple-500/30 text-white placeholder:text-purple-300/50 focus:border-pink-400 focus:ring-pink-400/20"
                 onFocus={() => setShowSuggestions(true)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
@@ -541,7 +542,7 @@ export default function AppPage() {
                 <button
                   type="button"
                   onClick={handleClearSearch}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-300 hover:text-pink-400"
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -561,14 +562,19 @@ export default function AppPage() {
               )}
             </div>
             <div className="flex gap-2 ml-2">
-              <Button type="submit" disabled={isSearching} className="bg-blue-600 hover:bg-blue-700">
+              <Button
+                type="submit"
+                disabled={isSearching}
+                className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white border-0"
+              >
                 <Search className="h-4 w-4 mr-1" />
                 Search
               </Button>
               <Button
                 type="button"
-                disabled={isSearching || !searchQuery.trim()}
+                disabled={isSearching}
                 variant={isSearching ? "default" : "outline"}
+                className={isSearching ? "bg-pink-600 text-white" : "border-pink-500/30 text-pink-400 hover:bg-pink-500/10 hover:text-pink-300"}
                 onClick={() => {
                   // Create search filters object
                   const searchFilters: any = {};
@@ -621,27 +627,27 @@ export default function AppPage() {
                     performFreshSearch(searchQuery, searchFilters, platformsToSearch);
                   }
                 }}
-                className={isSearching ? "bg-blue-500 text-white" : "hover:bg-gray-100"}
+
               >
-                <RefreshCw className={`h-4 w-4 mr-1 ${isSearching ? 'animate-spin' : ''}`} />
-                {isSearching ? `Refreshing (${searchType === 'cheapest' ? 'Cheapest' : searchType === 'expensive' ? 'Most Expensive' : searchType === 'popular' ? 'Popular' : searchType === 'newest' ? 'Newest' : 'All Results'})...` : "Refresh"}
+                <RefreshCw className={`h-4 w-4 mr-1 ${isSearching ? 'animate-spin' : ''} text-pink-400`} />
+                <span className="text-pink-400">{isSearching ? `Refreshing (${searchType === 'cheapest' ? 'Cheapest' : searchType === 'expensive' ? 'Most Expensive' : searchType === 'popular' ? 'Popular' : searchType === 'newest' ? 'Newest' : 'All Results'})...` : "Refresh"}</span>
               </Button>
             </div>
           </div>
 
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
-              <span className="text-sm text-muted-foreground">Search type:</span>
+              <span className="text-sm text-pink-400">Search type:</span>
               <Select value={searchType} onValueChange={setSearchType}>
-                <SelectTrigger className="w-[140px]">
+                <SelectTrigger className="w-[140px] bg-white/10 border-purple-500/30 text-white focus:ring-pink-400/20 focus:border-pink-400">
                   <SelectValue placeholder="Search type" />
                 </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="default">All Results</SelectItem>
-                  <SelectItem value="cheapest">Cheapest First</SelectItem>
-                  <SelectItem value="expensive">Most Expensive</SelectItem>
-                  <SelectItem value="popular">Popular/Trending</SelectItem>
-                  <SelectItem value="newest">Newest Items</SelectItem>
+                <SelectContent className="bg-indigo-950 border border-purple-500/30">
+                  <SelectItem value="default" className="text-white focus:bg-pink-500/10 focus:text-pink-300">All Results</SelectItem>
+                  <SelectItem value="cheapest" className="text-white focus:bg-pink-500/10 focus:text-pink-300">Cheapest First</SelectItem>
+                  <SelectItem value="expensive" className="text-white focus:bg-pink-500/10 focus:text-pink-300">Most Expensive</SelectItem>
+                  <SelectItem value="popular" className="text-white focus:bg-pink-500/10 focus:text-pink-300">Popular/Trending</SelectItem>
+                  <SelectItem value="newest" className="text-white focus:bg-pink-500/10 focus:text-pink-300">Newest Items</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -655,8 +661,8 @@ export default function AppPage() {
               />
 
               {executionTime !== null && (
-                <div className="flex items-center text-sm text-muted-foreground">
-                  <Clock className="h-3 w-3 mr-1" />
+                <div className="flex items-center text-sm text-pink-400/80">
+                  <Clock className="h-3 w-3 mr-1 text-pink-400" />
                   <span>Search time: {(executionTime / 1000).toFixed(2)}s</span>
                 </div>
               )}
@@ -684,18 +690,18 @@ export default function AppPage() {
         <div className={`flex-1 order-1 md:order-2 ${products.length > 0 ? '' : 'md:mx-auto md:max-w-3xl'}`}>
           {/* Error state */}
           {error && (
-            <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-6">
+            <div className="bg-white/10 border border-red-500/20 rounded-lg p-4 mb-6 backdrop-blur-md">
               <div className="flex items-start">
-                <AlertTriangle className="h-5 w-5 text-destructive mr-2 mt-0.5" />
+                <AlertTriangle className="h-5 w-5 text-red-400 mr-2 mt-0.5" />
                 <div className="flex-1">
-                  <p className="font-medium text-destructive">{error}</p>
-                  <p className="text-sm text-muted-foreground mt-1">
+                  <p className="font-medium text-red-400">{error}</p>
+                  <p className="text-sm text-purple-200 mt-1">
                     There was an error with your search. This could be due to network issues or the services being temporarily unavailable.
                   </p>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="mt-2 flex items-center gap-1"
+                    className="mt-2 flex items-center gap-1 border-red-500/30 text-red-400 hover:bg-red-500/10 hover:text-red-300"
                     onClick={handleRetry}
                   >
                     <RefreshCw className="h-3 w-3" />
@@ -765,7 +771,18 @@ export default function AppPage() {
             />
           </ErrorBoundary>
 
-
+          {/* Phone Mockup */}
+          {filteredProducts.length > 0 && (
+            <div className="mt-6 flex justify-center">
+              <div className="w-[280px]">
+                <PhoneMockup
+                  price={filteredProducts[0].price}
+                  productUrl={filteredProducts[0].productUrl}
+                  imageUrl={filteredProducts[0].imageUrl}
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
