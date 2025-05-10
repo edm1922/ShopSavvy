@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "next build --config next.config.vercel.js",
+  "buildCommand": "cp next.config.vercel.js next.config.js && next build",
   "outputDirectory": ".next",
   "cleanUrls": true,
   "trailingSlash": false,
