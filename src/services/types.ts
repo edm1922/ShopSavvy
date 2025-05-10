@@ -23,6 +23,7 @@ export interface Product {
   isBestseller?: boolean;
   isTrending?: boolean;
   reviewCount?: number;
+  sales?: number;
 }
 
 /**

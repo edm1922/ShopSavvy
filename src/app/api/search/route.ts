@@ -198,7 +198,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
       results,
       errors: errors.length > 0 ? errors : undefined,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error processing search request:', error);
 
     return NextResponse.json({
@@ -361,7 +361,7 @@ async function saveSearchQuery(
     } else {
       console.log('Successfully saved search query to database');
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error saving search query to database:', error);
   }
 }
