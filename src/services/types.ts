@@ -67,6 +67,7 @@ export interface SearchFilters {
   maxPrice?: number;
   brand?: string;
   category?: string;
+  minRating?: number;
   sortBy?: 'price_asc' | 'price_desc' | 'rating' | 'relevance';
 }
 
