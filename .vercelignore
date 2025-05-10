@@ -70,6 +70,7 @@ test-specific-credentials.js
 /src/services/search
 /supabase/functions
 /savvy-site-sightings-report
+/src/app/(marketing)
 
 # IDE
 .vscode

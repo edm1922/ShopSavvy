@@ -74,6 +74,24 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  // Exclude specific directories from the build
+  experimental: {
+    outputFileTracingExcludes: {
+      '*': [
+        'node_modules/@swc/core-linux-x64-gnu',
+        'node_modules/@swc/core-linux-x64-musl',
+        'node_modules/@esbuild/linux-x64',
+        'node_modules/puppeteer',
+        'node_modules/playwright',
+        'node_modules/puppeteer-core',
+        'node_modules/playwright-core',
+        'src/scripts/**',
+        'src/services/scrapers/**',
+        'src/app/(marketing)/**',
+      ],
+    },
+  },
 };
 
 module.exports = nextConfig;
